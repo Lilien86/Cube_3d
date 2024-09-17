@@ -111,19 +111,7 @@ int render_next_frame(t_ray *ray)
         ray->draw_end = ray->line_height / 2 + SCREEN_HEIGHT / 2;
         if (ray->draw_end >= SCREEN_HEIGHT)
             ray->draw_end = SCREEN_HEIGHT - 1;
-        if (ray->int_map[ray->map_x][ray->map_y] == 1)
-            ray->wall_color = 0xFFFFFF;
-        if (ray->side == 1)
-            ray->wall_color = ray->wall_color / 2;
-        for (int q = ray->draw_start; q < ray->draw_end; q++)
-            ray->addr[q * ray->line_length / 4 + x] = ray->wall_color;
-
-        ray->ceilling_color = 0xFF676FF;
-        ray->floor_color = 0xFF151F;
-        for (int d = ray->draw_end; d < SCREEN_HEIGHT; d++)
-            ray->addr[d * ray->line_length / 4 + x] = ray->ceilling_color;
-        for (int b = ray->draw_start; b > 0; b--)
-            ray->addr[b * ray->line_length / 4 + x] = ray->floor_color;
+        put_ray_colors(ray, &x);
 		x++;
 	}
     ray->old_time = ray->time;
@@ -146,21 +134,21 @@ void put_ray_colors(t_ray *ray, int *x)
     if (ray->side == 1)
         ray->wall_color = 0xF5EFFF;
     i = ray->draw_start;
-    while(i < ray->draw_end)
+    while(i <= ray->draw_end)
     {
         ray->addr[i * ray->line_length / 4 + *x] = ray->wall_color;
         i++;
     }
     i = ray->draw_end;
     ray->floor_color = 0xA594F9;
-    while(i < SCREEN_HEIGHT)
+    while(i <= SCREEN_HEIGHT)
     {
         ray->addr[i * ray->line_length / 4 + *x] = ray->floor_color;
         i++;
     }
     i = ray->draw_start;
     ray->ceilling_color = 0xE5D9F2;
-    while(i > 0)
+    while(i >= 0)
     {
         ray->addr[i * ray->line_length / 4 + *x] = ray->ceilling_color;
         i--;
