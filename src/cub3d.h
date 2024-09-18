@@ -210,6 +210,8 @@ int 	move_player(int keycode, t_ray *ray);
 int 	rotate_player(int keycode, t_ray *ray);
 int		key_hook(int keycode, t_ray *ray);
 
+//UTILS_GRAPHIC
+unsigned long	create_rgb(int r, int g, int b);
 
 //--------------------------------------------YVANN
 
