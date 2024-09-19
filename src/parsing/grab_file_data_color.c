@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 11:26:38 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/20 11:26:58 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,35 @@ static int	search_id_color(t_data *data, char *id)
 			ft_putstr_fd(RED "Error:\nFile format is incorect\n" WHITE, 2);
 			pars_clean_exit(data);
 		}
-	take_colors_value(data->read_file);
-	printf(MAGENTA"color->floor : %d, %d, %d\n", data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
-	printf(MAGENTA"color->ceiling : %d, %d, %d\n", data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
+		else if (check_line(data->read_file, id, i, 2) == 0)
+		{
+			p_color = i;
+			break ;
+		}
+
+		i++;
+	}
+	return (p_color);
+}
+
+void	grab_color(t_data *data)
+{
+	if (!data)
+		return ;
+	int p_floor = search_id_color(data, "F ");
+	int p_ceiling = search_id_color(data, "C ");
+	if (p_floor == -1 || p_ceiling == -1)
+	{
+		ft_putstr_fd(RED "Error:\nFile format is incorect\n" WHITE, 2);
+		pars_clean_exit(data);
+	}
+	take_colors_value(data->read_file, p_floor, p_ceiling);
+	// printf(MAGENTA"color->floor : %d, %d, %d\n", data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
+	// printf(MAGENTA"color->ceiling : %d, %d, %d\n", data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
 	data->f_hex_rgb = convert_rgb_to_hex(data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
-	printf("\n");
+	//printf("\n");
 	data->c_hex_rgb = convert_rgb_to_hex(data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
-	printf(BLUE"Finaly floor : %s\n", data->f_hex_rgb);
-	printf(BLUE"Finaly ceiling : %s\n", data->c_hex_rgb);
+	// printf(BLUE"Finaly floor : %s\n", data->f_hex_rgb);
+	// printf(BLUE"Finaly ceiling : %s\n", data->c_hex_rgb);
 	return ;
 }
