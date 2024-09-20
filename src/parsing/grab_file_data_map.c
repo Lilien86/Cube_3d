@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data_map.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 08:55:41 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 13:46:43 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 14:07:08 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ void	grab_map(t_data *data)
 	{
 		ft_putstr_fd(RED"Error:\nincorect map format:"
 			WHITE" player doesn't must be next to 'EOF'\n", 2);
+		pars_clean_exit(data);
+	}
+	if (contains_only_these_caractere(data->map) == 2)
+	{
+		ft_putstr_fd(RED"Error:\nincorect map format:"WHITE" player doesn't must be next to 'EOF'\n", 2);
 		pars_clean_exit(data);
 	}
 	if (check_only_spaces_ones(data->map, 0, ft_tab_len(data->map)) == 1

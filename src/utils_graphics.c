@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 void	cleanup_graphics(t_ray *ray)
 {
 	if (ray->img)
