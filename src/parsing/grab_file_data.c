@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 12:52:13 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:36:40 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 	result = 0;
 	line = NULL;
 	line = deblank(rf->tab_content[num_line]);
-	if (rf == NULL || ft_strlen(id) < (size_t)value_check)
+	if (rf == NULL || ft_strlen(id) < (size_t)value_check || !line)
 		return (-2);
 	//printf("=====%c\n", line[value_check]);
 	result = ft_strncmp(line, id, value_check);
@@ -28,22 +28,8 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 	return (result);
 }
 
-static int	check_path(t_read_file *rf, int num_line, char *id)
+static int	check_path_second_part(char *id, t_read_file *rf, char *str)
 {
-	char	*str;
-	char	*line;
-
-	if (rf == NULL)
-		pars_clean_exit(rf->data);
-	line = deblank(rf->tab_content[num_line]);
-	str = ft_substr(line, 2, ft_strlen(line) - 2);
-	if (str == NULL)
-		return (-1);
-	if (has_extenssion(str, ".xpm") == false)
-	{
-		free(str);
-		return (-1);
-	}
 	if (ft_strcmp(id, "NO") == 0)
 	{
 		if (rf->p_north != NULL)
@@ -67,6 +53,34 @@ static int	check_path(t_read_file *rf, int num_line, char *id)
 		if (rf->p_east != NULL)
 			return (-1);
 		rf->p_east = str;
+	}
+	return (0);
+}
+
+static int	check_path(t_read_file *rf, int num_line, char *id)
+{
+	char	*str;
+	char	*line;
+
+	if (rf == NULL)
+		pars_clean_exit(rf->data);
+	line = deblank(rf->tab_content[num_line]);
+	if (!line)
+		return (-1);
+	str = ft_substr(line, 2, ft_strlen(line) - 2);
+	if (str == NULL)
+		return (-1);
+	if (has_extenssion(str, ".xpm") == false)
+	{
+		free(str);
+		free(line);
+		return (-1);
+	}
+	if (check_path_second_part(id, rf, str) == -1)
+	{
+		free(line);
+		free(str);
+		return (-1);
 	}
 	free(line);
 	return (0);
@@ -106,30 +120,6 @@ static void	grab_sprite_paths(t_data *data)
 		i++;
 	}
 		return ;
-}
-
-static void	manage_utilization_flood_fill(t_data *data, char **c_map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(c_map[i] != NULL)
-	{
-		j = 0;
-		while (c_map[i][j] != '\0')
-		{
-			if (flood_fill(c_map, i, j) == -1)
-			{
-				ft_putstr_fd(RED"Error:\nInvalid Map:"
-					WHITE" must be around of walls\n", 2);
-				ft_free_tab(c_map);
-				pars_clean_exit(data);
-			}
-			j++;
-		}
-		i++;
-	}
 }
 
 void	grab_data(t_data *data)

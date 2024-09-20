@@ -159,6 +159,7 @@ void		grab_map(t_data *data);
 //flood_fill.c
 int			replace_space_to_wall(t_data *data);
 int			flood_fill(char **c_map, int pos_x, int pos_y);
+void		manage_utilization_flood_fill(t_data *data, char **c_map);
 
 //TEMPOARY FUNCTIONS
 void    print_2d_array(char **array, int rows);

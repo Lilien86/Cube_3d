@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 13:10:11 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:19:56 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,27 +93,6 @@ static int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling)
 	check_and_store_calor_values(f_tab, c_tab, rf->data);
 	return (0);
 }
-
-// void	grab_color(t_data *data)
-// {
-// 	if (!data)
-// 		return ;
-// 	if (check_line(data->read_file, "F ", 4, 2) != 0
-// 		|| check_line(data->read_file, "C ", 5, 2) != 0)
-// 		{
-// 			ft_putstr_fd(RED "Error:\nFile format is incorect\n" WHITE, 2);
-// 			pars_clean_exit(data);
-// 		}
-// 	take_colors_value(data->read_file);
-// 	printf(MAGENTA"color->floor : %d, %d, %d\n", data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
-// 	printf(MAGENTA"color->ceiling : %d, %d, %d\n", data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
-// 	data->f_hex_rgb = convert_rgb_to_hex(data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
-// 	printf("\n");
-// 	data->c_hex_rgb = convert_rgb_to_hex(data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
-// 	printf(BLUE"Finaly floor : %s\n", data->f_hex_rgb);
-// 	printf(BLUE"Finaly ceiling : %s\n", data->c_hex_rgb);
-// 	return ;
-// }
 
 static int	search_id_color(t_data *data, char *id)
 {
