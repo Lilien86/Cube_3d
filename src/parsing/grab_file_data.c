@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   grab_file_data.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 14:07:47 by ybarbot          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../cub3d.h"
 
@@ -54,7 +43,7 @@ static int	check_path_second_part(char *id, t_read_file *rf, char *str)
 			return (-1);
 		rf->p_east = str;
 	}
-	free(line);
+	//free(line);
 	return (0);
 }
 
