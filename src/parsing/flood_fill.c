@@ -6,11 +6,11 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:22:10 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/09 13:38:53 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:36:12 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 int	replace_space_to_wall(t_data *data)
 {
@@ -38,9 +38,9 @@ static int	is_invalid(char **c_map, int x, int y)
 {
 	if (c_map[x] == NULL || c_map[x][y] == '\0')
 	{
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	flood_fill(char **c_map, int x, int y)
@@ -49,17 +49,15 @@ int	flood_fill(char **c_map, int x, int y)
 	{
 		return (1);
 	}
-	if (c_map[x][y] == '1') {
+	if (c_map[x][y] == '1')
 		return (1);
-	}
 	if (c_map[x][y] == '0')
 	{
-		if (is_invalid(c_map, x - 1, y) ||
-			is_invalid(c_map, x + 1, y) ||
-			is_invalid(c_map, x, y - 1) ||
-			is_invalid(c_map, x, y + 1)) {
+		if (is_invalid(c_map, x - 1, y)
+			|| is_invalid(c_map, x + 1, y)
+			|| is_invalid(c_map, x, y - 1)
+			|| is_invalid(c_map, x, y + 1))
 			return (-1);
-		}
 		c_map[x][y] = '1';
 	}
 	flood_fill(c_map, x + 1, y);

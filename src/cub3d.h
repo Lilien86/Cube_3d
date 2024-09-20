@@ -122,8 +122,10 @@ typedef struct s_data
 	void		*west;
 	void		*east;
 	int			size_image;
-	t_rgb		*f_rgb;
-	t_rgb		*c_rgb;
+	t_rgb		*f_int_rgb;
+	t_rgb		*c_int_rgb;
+	long long int			f_hex_rgb;
+	long long int			c_hex_rgb;
 	int			fd_map;
 	char**		map;
 	int			map_width;
@@ -168,6 +170,13 @@ int		clean_close_windows(void *param);
 
 //open_textures.c
 int		open_textures_paths(t_data *data, char **c_map);
+
+//int_to_hex
+char	*int_to_hex(int	nbr);
+char	*convert_rgb_to_hex(int R, int G, int B);
+
+//utils_parse
+char*	deblank(char* input);
 //--------------------------------------------LILIEN
 
 
@@ -203,6 +212,7 @@ void parse_map(t_ray *ray, t_data *data, int **int_map);
 int 	move_player(int keycode, t_ray *ray);
 int 	rotate_player(int keycode, t_ray *ray);
 int		key_hook(int keycode, t_ray *ray);
+
 
 //--------------------------------------------YVANN
 

@@ -1,19 +1,5 @@
 #include "../cub3d.h"
 
-// void	free_mlx_images(t_data *data)
-// {
-// 	if (!data)
-// 		return ;
-// 	if (data->north)
-// 		mlx_destroy_image(data->ray->mlx, data->north);
-// 	if (data->south)
-// 		mlx_destroy_image(data->ray->mlx, data->south);
-// 	if (data->west)
-// 		mlx_destroy_image(data->ray->mlx, data->west);
-// 	if (data->east)
-// 		mlx_destroy_image(data->ray->mlx, data->east);
-// }
-
 void	all_clean_exit(t_data *data)
 {
 	// if (data->north)
@@ -38,10 +24,6 @@ void	all_clean_exit(t_data *data)
 
 void	pars_clean_exit(t_data *data)
 {
-	if (data->read_file->str_content)
-		free(data->read_file->str_content);
-	if (data->read_file->tab_content)
-		ft_free_tab(data->read_file->tab_content);
 	if (data->read_file->p_north)
 		free(data->read_file->p_north);
 	if (data->read_file->p_south)
@@ -50,12 +32,16 @@ void	pars_clean_exit(t_data *data)
 		free(data->read_file->p_west);
 	if (data->read_file->p_east)
 		free(data->read_file->p_east);
+	if (data->read_file->str_content)
+		free(data->read_file->str_content);
+	if (data->read_file->tab_content)
+		ft_free_tab(data->read_file->tab_content);
 	if (data->read_file)
 		free(data->read_file);
-	if (data->c_rgb)
-		free(data->c_rgb);
-	if (data->f_rgb)
-		free(data->f_rgb);
+	if (data->c_int_rgb)
+		free(data->c_int_rgb);
+	if (data->f_int_rgb)
+		free(data->f_int_rgb);
 	if (data->map)
 		ft_free_tab(data->map);
 	if (data)
@@ -63,7 +49,7 @@ void	pars_clean_exit(t_data *data)
 	exit(0);
 }
 
-void    pars_clean_return(t_data *data)
+void	pars_clean_return(t_data *data)
 {
 	if (data->read_file->str_content)
 		free(data->read_file->str_content);
@@ -79,10 +65,10 @@ void    pars_clean_return(t_data *data)
 		free(data->read_file->p_east);
 	if (data->read_file)
 		free(data->read_file);
-	if (data->c_rgb)
-		free(data->c_rgb);
-	if (data->f_rgb)
-		free(data->f_rgb);
+	if (data->c_int_rgb)
+		free(data->c_int_rgb);
+	if (data->f_int_rgb)
+		free(data->f_int_rgb);
 	if (data->map)
 		ft_free_tab(data->map);
 	if (data)

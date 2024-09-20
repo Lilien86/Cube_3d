@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 08:55:41 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/10 13:53:16 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:46:16 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,29 @@ static char	**create_new_tab_from_n(char **tab, int n)
 {
 	int			original_size;
 	int			new_size;
-	char **		new_tab;
+	char		**new_tab;
 	int			i;
-	
+
 	i = 0;
 	original_size = ft_tab_len(tab);
 	if (n >= original_size || n < 0)
 	{
 		printf("Invalid starting index!\n");
-		return NULL;
+		return (NULL);
 	}
 	new_size = original_size - n;
 	new_tab = ft_calloc((new_size + 1), sizeof(char *));
 	if (!new_tab)
 	{
 		printf("Memory allocation failed!\n");
-		return NULL;
+		return (NULL);
 	}
 	while (i < new_size)
 	{
 		new_tab[i] = ft_strdup(tab[n + i]);
 		i++;
 	}
-	new_tab[new_size] = NULL;
+	new_tab[new_size] = (NULL);
 	return (new_tab);
 }
 
@@ -55,15 +55,18 @@ static int	contains_only_these_caractere(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while(map[i][j] != 0)
+		while (map[i][j] != 0)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' '
-				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'O'
+				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
 				&& map[i][j] != 'W')
 				return (1);
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'O'
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 				player++;
+			if ((map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W') && map[i][j + 1] == '\0')
+				return (2);
 			j++;
 		}
 		i++;
@@ -78,7 +81,7 @@ static int	check_only_spaces_ones(char **map, int id, int sizeMap)
 	int	i;
 
 	if (!map || id < 0 || id > sizeMap || sizeMap <= 0 || !map[id])
- 		return (1);
+		return (1);
 	i = 0;
 	while (i < sizeMap && map[id][i])
 	{
@@ -99,16 +102,24 @@ void	grab_map(t_data *data)
 		ft_putstr_fd(RED"Error:\nmalloc failed"WHITE, 2);
 		pars_clean_exit(data);
 	}
-	//print_2d_array(data->map, 15);
 	if (contains_only_these_caractere(data->map) == 1)
 	{
-		ft_putstr_fd(RED"Error:\nincorect map format"WHITE" must be contains of '0' '1' SPACE 'N' 'S' 'W' 'O'\n", 2);
+		ft_putstr_fd(RED"Error:\nincorect map format"
+			WHITE" must be contains of '0' '1' SPACE 'N' 'S' 'W' 'O'\n", 2);
+		pars_clean_exit(data);
+	}
+	if (contains_only_these_caractere(data->map) == 2)
+	{
+		ft_putstr_fd(RED"Error:\nincorect map format:"
+			WHITE" player doesn't must be next to 'EOF'\n", 2);
 		pars_clean_exit(data);
 	}
 	if (check_only_spaces_ones(data->map, 0, ft_tab_len(data->map)) == 1
-		|| check_only_spaces_ones(data->map, ft_tab_len(data->map) - 1, ft_tab_len(data->map)) == 1)
+		|| check_only_spaces_ones(data->map, ft_tab_len(data->map) - 1,
+			ft_tab_len(data->map)) == 1)
 	{
-		ft_putstr_fd(RED"EError:\nincorect map format"WHITE" must be contains of '0' '1' SPACE 'N' 'S' 'W' 'O'\n", 2);
+		ft_putstr_fd(RED"EError:\nincorect map format"
+			WHITE" must be contains of '0' '1' SPACE 'N' 'S' 'W' 'O'\n", 2);
 		pars_clean_exit(data);
 	}
 }
