@@ -6,15 +6,15 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 09:37:56 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/18 11:18:47 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:10:59 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool    has_extenssion(char *filename, char *extenssion)
+bool	has_extenssion(char *filename, char *extenssion)
 {
-	size_t  len;
+	size_t	len;
 
 	if (!filename)
 		return (false);
@@ -26,10 +26,10 @@ bool    has_extenssion(char *filename, char *extenssion)
 	return (false);
 }
 
-int    open_file(char *file, t_data *data)
+int	open_file(char *file, t_data *data)
 {
-	int     fd;
-	
+	int	fd;
+
 	if (!file || !data)
 		return (-1);
 	if (has_extenssion(file, ".cub") == false)

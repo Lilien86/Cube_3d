@@ -167,14 +167,14 @@ void put_ray_colors(t_ray *ray, int *x)
 		i++;
 	}
 	i = ray->draw_end;
-	ray->floor_color = 9504078;
+	ray->floor_color = ray->data->f_hex_rgb;
 	while(i < SCREEN_HEIGHT)
 	{
 		ray->addr[i * ray->line_length / 4 + *x] = ray->floor_color;
 		i++;
 	}
 	i = ray->draw_start;
-	ray->ceilling_color = 0xE5D9F2;
+	ray->ceilling_color = ray->data->c_hex_rgb;
 	while(i > 0)
 	{
 		ray->addr[i * ray->line_length / 4 + *x] = ray->ceilling_color;

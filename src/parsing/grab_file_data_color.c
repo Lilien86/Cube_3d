@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data_color.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 11:10:59 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/20 13:10:11 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	is_in_rang(int nb[6], int start, int end)
 	return (0);
 }
 
-static void	check_and_store_calor_values(char **f_tab, char ** c_tab, t_data *data)
+static void	check_and_store_calor_values(char **f_tab,
+	char **c_tab, t_data *data)
 {
 	int	tab_num[6];
 
@@ -40,7 +41,8 @@ static void	check_and_store_calor_values(char **f_tab, char ** c_tab, t_data *da
 	tab_num[5] = ft_atoi_base(c_tab[2], "0123456789");
 	if (is_in_rang(tab_num, 0, 255) == 1)
 	{
-		ft_putstr_fd(RED "EEError:\nFile format is incorect:" WHITE" rgb values must be between 0 and 255\n", 2);
+		ft_putstr_fd(RED "EEError:\nFile format is incorect:"
+			WHITE" rgb values must be between 0 and 255\n", 2);
 		ft_free_tab(f_tab);
 		ft_free_tab(c_tab);
 		pars_clean_exit(data);
@@ -64,8 +66,10 @@ static int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling)
 
 	if (!rf)
 		return (-1);
-	f_str = ft_substr(rf->tab_content[p_floor], 2, ft_strlen(rf->tab_content[p_floor]) -2);
-	c_str = ft_substr(rf->tab_content[p_ceiling], 2, ft_strlen(rf->tab_content[p_ceiling]) -2);
+	f_str = ft_substr(rf->tab_content[p_floor], 2,
+			ft_strlen(rf->tab_content[p_floor]) - 2);
+	c_str = ft_substr(rf->tab_content[p_ceiling], 2,
+			ft_strlen(rf->tab_content[p_ceiling]) - 2);
 	if (c_str == NULL || f_str == NULL)
 		return (-1);
 	f_tab = ft_split(f_str, ',');
@@ -80,7 +84,8 @@ static int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling)
 	free(c_str);
 	if (ft_tab_len(f_tab) != 3 || ft_tab_len(c_tab) != 3)
 	{
-		ft_putstr_fd(RED"Error:\nBad Syntax:" WHITE" value rgb requiere 3 values (value2,value2,value3)\n", 2);
+		ft_putstr_fd(RED"Error:\nBad Syntax:"
+			WHITE" value rgb requiere 3 values (value2,value2,value3)\n", 2);
 		ft_free_tab(f_tab);
 		ft_free_tab(c_tab);
 		pars_clean_exit(rf->data);
@@ -129,46 +134,54 @@ static int	search_id_color(t_data *data, char *id)
 			p_color = i;
 			break ;
 		}
-
 		i++;
 	}
 	return (p_color);
 }
 
-int parseHex(char* input){
-	int result = 0;
-	while(input && *input){
-		if(*input >= '0' && *input <= '9'){
+int	parseHex(char *input)
+{
+	int	result;
+
+	result = 0;
+	while (input && *input)
+	{
+		if (*input >= '0' && *input <= '9')
+		{
 			result <<= 4;
-			result+= *input - '0';
+			result += *input - '0';
 		}
-		if(*input >= 'a' && *input <= 'f'){
+		if (*input >= 'a' && *input <= 'f')
+		{
 			result <<= 4;
-			result+= *input - 'a'+10;
+			result += *input - 'a' + 10;
 		}
-		if(*input >= 'A' && *input <= 'F'){
+		if (*input >= 'A' && *input <= 'F')
+		{
 			result <<= 4;
-			result+= *input - 'A'+10;
-		} 
+			result += *input - 'A' + 10;
+		}
 		input++;
 	}
-	return result;
+	return (result);
 }
 
 void	grab_color(t_data *data)
 {
+	int	p_ceiling;
+	int	p_floor;
+
 	if (!data)
 		return ;
-	int p_floor = search_id_color(data, "F ");
-	int p_ceiling = search_id_color(data, "C ");
+	p_floor = search_id_color(data, "F ");
+	p_ceiling = search_id_color(data, "C ");
 	if (p_floor == -1 || p_ceiling == -1)
 	{
-		ft_putstr_fd(RED "Error:\nFile format is incorect:"WHITE " there are not value flor r ceilling\n", 2);
+		ft_putstr_fd(RED "Error:\nFile format is incorect:"
+			WHITE" there are not value flor r ceilling\n", 2);
 		pars_clean_exit(data);
 	}
 	take_colors_value(data->read_file, p_floor, p_ceiling);
-	//data->f_hex_rgb = convert_rgb_to_hex(data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
-	//data->c_hex_rgb = convert_rgb_to_hex(data->c_int_rgb->red, data->c_int_rgb->green, data->c_int_rgb->blue);
 	// printf(GREEN"%d, %d, %d\n"WHITE, data->f_int_rgb->red, data->f_int_rgb->green, data->f_int_rgb->blue);
 	data->f_hex_rgb = (data->f_int_rgb->red << 16) + (data->f_int_rgb->green << 8) + (data->f_int_rgb->blue);
 	data->c_hex_rgb = (data->c_int_rgb->red << 16) + (data->c_int_rgb->green << 8) + (data->c_int_rgb->blue);

@@ -1,19 +1,5 @@
 #include "../cub3d.h"
 
-// void	free_mlx_images(t_data *data)
-// {
-// 	if (!data)
-// 		return ;
-// 	if (data->north)
-// 		mlx_destroy_image(data->ray->mlx, data->north);
-// 	if (data->south)
-// 		mlx_destroy_image(data->ray->mlx, data->south);
-// 	if (data->west)
-// 		mlx_destroy_image(data->ray->mlx, data->west);
-// 	if (data->east)
-// 		mlx_destroy_image(data->ray->mlx, data->east);
-// }
-
 void	all_clean_exit(t_data *data)
 {
 	// if (data->north)

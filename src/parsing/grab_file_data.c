@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 11:11:35 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/20 12:52:13 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	check_path(t_read_file *rf, int num_line, char *id)
 	}
 	else if (ft_strcmp(id, "WE") == 0)
 	{
-	if (rf->p_west != NULL)
+		if (rf->p_west != NULL)
 			return (-1);
 		rf->p_west = str;
 	}
@@ -97,7 +97,7 @@ static void	grab_sprite_paths(t_data *data)
 	i = 0;
 	if (data->read_file == NULL)
 		pars_clean_exit(data);
-	while(data->read_file->tab_content[i])
+	while (data->read_file->tab_content[i])
 	{
 		valid_value(data, "NO", i);
 		valid_value(data, "SO", i);
@@ -121,7 +121,8 @@ static void	manage_utilization_flood_fill(t_data *data, char **c_map)
 		{
 			if (flood_fill(c_map, i, j) == -1)
 			{
-				ft_putstr_fd(RED"Error:\nInvalid Map:" WHITE" must be around of walls\n", 2);
+				ft_putstr_fd(RED"Error:\nInvalid Map:"
+					WHITE" must be around of walls\n", 2);
 				ft_free_tab(c_map);
 				pars_clean_exit(data);
 			}
