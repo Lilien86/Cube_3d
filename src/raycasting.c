@@ -140,8 +140,8 @@ void put_ray_colors(t_ray *ray, int *x)
         i++;
     }
     i = ray->draw_end;
-    ray->floor_color = 0xA594F9;
-    while(i <= SCREEN_HEIGHT)
+    ray->floor_color = 9504078;
+    while(i < SCREEN_HEIGHT)
     {
         ray->addr[i * ray->line_length / 4 + *x] = ray->floor_color;
         i++;

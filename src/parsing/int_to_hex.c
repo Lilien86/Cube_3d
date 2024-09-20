@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 09:27:09 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 11:26:46 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/20 11:27:24 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*convert_rgb_to_hex(int R, int G, int B)
 		green = int_to_hex(G);
 		blue = int_to_hex(B);
 		hex_code = ft_calloc(17,1);
-		append_char(hex_code, '#');
+		//append_char(hex_code, '#');
 		ft_strcat(hex_code, red);
 		ft_strcat(hex_code, green);
 		ft_strcat(hex_code, blue);
