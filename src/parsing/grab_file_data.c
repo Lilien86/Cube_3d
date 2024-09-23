@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grab_file_data.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 10:31:26 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cub3d.h"
 
@@ -11,69 +22,9 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 	line = deblank(rf->tab_content[num_line]);
 	if (rf == NULL || ft_strlen(id) < (size_t)value_check || !line)
 		return (-2);
-	//printf("=====%c\n", line[value_check]);
 	result = ft_strncmp(line, id, value_check);
 	free(line);
 	return (result);
-}
-
-static int	check_path_second_part(char *id, t_read_file *rf, char *str)
-{
-	if (ft_strcmp(id, "NO") == 0)
-	{
-		if (rf->p_north != NULL)
-			return (-1);
-		rf->p_north = str;
-	}
-	else if (ft_strcmp(id, "SO") == 0)
-	{
-		if (rf->p_south != NULL)
-			return (-1);
-		rf->p_south = str;
-	}
-	else if (ft_strcmp(id, "WE") == 0)
-	{
-		if (rf->p_west != NULL)
-			return (-1);
-		rf->p_west = str;
-	}
-	else if (ft_strcmp(id, "EA") == 0)
-	{
-		if (rf->p_east != NULL)
-			return (-1);
-		rf->p_east = str;
-	}
-	//free(line);
-	return (0);
-}
-
-static int	check_path(t_read_file *rf, int num_line, char *id)
-{
-	char	*str;
-	char	*line;
-
-	if (rf == NULL)
-		pars_clean_exit(rf->data);
-	line = deblank(rf->tab_content[num_line]);
-	if (!line)
-		return (-1);
-	str = ft_substr(line, 2, ft_strlen(line) - 2);
-	if (str == NULL)
-		return (-1);
-	if (has_extenssion(str, ".xpm") == false)
-	{
-		free(str);
-		free(line);
-		return (-1);
-	}
-	if (check_path_second_part(id, rf, str) == -1)
-	{
-		free(line);
-		free(str);
-		return (-1);
-	}
-	free(line);
-	return (0);
 }
 
 static int	valid_value(t_data *data, char *id, int i)
@@ -109,7 +60,7 @@ static void	grab_sprite_paths(t_data *data)
 		valid_value(data, "EA", i);
 		i++;
 	}
-		return ;
+	return ;
 }
 
 void	grab_data(t_data *data)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/09 10:22:10 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 10:30:59 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	replace_space_to_wall(t_data *data)
@@ -61,7 +73,7 @@ void	manage_utilization_flood_fill(t_data *data, char **c_map)
 	int	j;
 
 	i = 0;
-	while(c_map[i] != NULL)
+	while (c_map[i] != NULL)
 	{
 		j = 0;
 		while (c_map[i][j] != '\0')

@@ -1,15 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_clean_exit.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 10:12:27 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 10:12:29 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	all_clean_exit(t_data *data)
 {
-	// if (data->north)
-	// 	free(data->north);
-	// if (data->south)
-	// 	free(data->south);
-	// if (data->west)
-	// 	free(data->west);
-	// if (data->east)
-	// 	free(data->east);
 	if (data->ray->img)
 		mlx_destroy_image(data->ray->mlx, data->ray->img);
 	if (data->ray->mlx)

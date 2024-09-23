@@ -5,8 +5,8 @@
 # define MAX_RGB 255
 
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 896
+#define SCREEN_HEIGHT 512
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
 //COLORS
@@ -134,12 +134,19 @@ bool		has_extenssion(char *filename, char *extenssion);
 //file_to_string.c
 t_read_file	*read_file_to_string(int fd, t_data *data);
 
+//check_store_path.c
+int	check_path(t_read_file *rf, int num_line, char *id);
+
+//contains_only_these_caractere.c
+int	contains_only_these_caractere(char **map);
+
 //string_to_tab.c
 void		string_to_tab(t_read_file *rf);
 
 //grab_file_data.c
 void		grab_data(t_data *data);
 int			check_line(t_read_file *rf, char *id, int num_line, int value_check);
+int			is_in_rang(int nb[6], int start, int end);
 
 //grab_file_data_color.c
 void		grab_color(t_data *data);
@@ -163,9 +170,8 @@ int			clean_close_windows(void *param);
 //open_textures.c
 int			open_textures_paths(t_data *data, char **c_map);
 
-//int_to_hex
-char		*int_to_hex(int	nbr);
-char		*convert_rgb_to_hex(int R, int G, int B);
+//take_color_values.c
+int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
 
 //utils_parse
 char*		deblank(char* input);
