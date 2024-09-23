@@ -117,6 +117,7 @@ typedef struct s_ray
 	t_texture 			*tx_west;
 	t_texture 			*tx_east;
 	t_data				*data;
+	int					wall_color;
 } t_ray;
 
 typedef struct s_data
