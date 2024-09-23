@@ -115,8 +115,8 @@ int render_next_frame(t_ray *ray)
 		//printf("FPS: %f\n", 1.0 / ray->frame_time);
 
 	mlx_put_image_to_window(ray->mlx, ray->mlx_win, ray->img, 0, 0);
-	ray->move_speed = ray->frame_time * 10.0;
-	ray->rot_speed = ray->frame_time * 6.0;
+	ray->move_speed = ray->frame_time * 7.0;
+	ray->rot_speed = ray->frame_time * 4.0;
 	return (0);
 }
 void draw_texture(t_ray *ray, int *x)
@@ -148,9 +148,7 @@ void put_ray_colors(t_ray *ray, int *x)
 	(void)x;
 	if(ray->side == 0 && ray->ray_dir_x < 0)
 	{
-		ray->addr = (int *)mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
-
-		ray->wall_color = 0xD2E0FB; //bleu tres clair pastel SUD
+		ray->tx = ray->tx_north;
 	}
 	else if(ray->side == 0 && ray->ray_dir_x > 0)
 	{
