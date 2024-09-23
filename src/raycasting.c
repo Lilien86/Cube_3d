@@ -115,10 +115,23 @@ void put_ray_colors(t_ray *ray, int *x)
 {
 	int i;
 
-	if (ray->int_map[ray->map_x][ray->map_y] == 1)
-		ray->wall_color = 0xCDC1FF;
-	if (ray->side == 1)
-		ray->wall_color = 0xF5EFFF;
+	if(ray->side == 0 && ray->ray_dir_x > 0)
+	{
+		ray->wall_color = 0xD2E0FB; //bleu tres clair pastel SUD
+	}
+	else if(ray->side == 0 && ray->ray_dir_x < 0)
+	{
+		ray->wall_color = 0xB8001F; //rouge bordeaux NORTH
+
+	}
+	else if(ray->side == 1 && ray->ray_dir_y > 0)
+	{
+		ray->wall_color = 0xC0EBA6; //vert clair EAST
+	}
+	else
+	{
+		ray->wall_color = 0xFCCD2A; //jaune WEST
+	}
 	i = ray->draw_start;
 	while(i <= ray->draw_end)
 	{

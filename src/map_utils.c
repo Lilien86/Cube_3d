@@ -64,8 +64,8 @@ void	fill_map_holes(t_data *data, int **int_map, int *x, int *y)
 	// ft_print_char_tab(ray->data->map);
 	// printf("\n");
 	// printf("Int Map to Ray:\n");
-	// ft_print_int_tab(int_map, ray->data->map_height, ray->data->map_width);
-	// printf("\n");
+	//ft_print_int_tab(int_map, data->map_height, data->map_width);
+	//printf("\n");
 }
 void parse_map(t_ray *ray, t_data *data, int **int_map)
 {
@@ -76,6 +76,7 @@ void parse_map(t_ray *ray, t_data *data, int **int_map)
 	y = 0;
 	while (y < data->map_height)
 	{
+		//printf("\n%d\n", data->map_height);
 		x = 0;
 		size_line = (int)ft_strlen(data->map[y]);
 		while (x < size_line)
