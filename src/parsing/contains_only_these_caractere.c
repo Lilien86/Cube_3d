@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:38:17 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:05:54 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 10:44:09 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	contains_only_these_caractere(char **map)
 	int	player;
 	int	ret;
 
-	if (!map)
-		return (-1);
 	i = 0;
 	player = 0;
 	while (map[i])
