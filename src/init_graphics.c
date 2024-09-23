@@ -28,8 +28,10 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 		pars_clean_exit(data);
 		exit(0);
 	}
-	//add get addresse romain to get data for pixel texture put
-	//ray->addr = (int *)mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
+	ray->tx_north->addr = mlx_get_data_addr(ray->tx_north->img, &ray->tx_north->bpp, &ray->tx_north->size_line, &ray->tx_north->endian);
+	ray->tx_south->addr = mlx_get_data_addr(ray->tx_south->img, &ray->tx_south->bpp, &ray->tx_south->size_line, &ray->tx_south->endian);
+	ray->tx_west->addr = mlx_get_data_addr(ray->tx_west->img, &ray->tx_west->bpp, &ray->tx_west->size_line, &ray->tx_west->endian);
+	ray->tx_east->addr = mlx_get_data_addr(ray->tx_east->img, &ray->tx_east->bpp, &ray->tx_east->size_line, &ray->tx_east->endian);
 
 }
 // static void draw_texture(t_ray *ray, t_game *game, t_mlx *mlx, int x)
@@ -55,6 +57,7 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 //         y++;
 //     }
 // }
+
 
 void    init_ray(t_ray *ray, t_data *data, int **int_map)
 {
@@ -107,7 +110,7 @@ int setup_mlx(t_ray *ray)
 		return(1);
 	}
 	ray->img = mlx_new_image(ray->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	ray->addr = (int *)mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
+	ray->addr = mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
 
 	mlx_hook(ray->mlx_win, 2, 1L << 0, key_hook, ray);
 	mlx_loop_hook(ray->mlx, render_next_frame, ray);

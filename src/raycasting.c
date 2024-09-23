@@ -162,26 +162,8 @@ void put_ray_colors(t_ray *ray, int *x)
 	}
 	else
 	{
-		ray->wall_color = 0xFCCD2A; //jaune WEST
-	}
-	int i;
-	i = ray->draw_start;
-	while(i <= ray->draw_end)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->wall_color;
-		i++;
-	}
-	i = ray->draw_end;
-	while(i <= SCREEN_HEIGHT)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
-		i++;
-	}
-	i = ray->draw_start;
-	while(i >= 0)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->data->c_hex_rgb;
-		i--;
+		ray->tx = ray->tx_west;
+		//ray->wall_color = 0xFCCD2A; //jaune WEST
 	}
 
 //	i = ray->draw_start;
