@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:31:06 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:19:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	grab_color(t_data *data)
 	if (p_floor == -1 || p_ceiling == -1)
 	{
 		ft_putstr_fd(RED "Error:\nFile format is incorect:"
-			WHITE" there are not value flor r ceilling\n", 2);
+			WHITE" there are not value flor r ceilling\n"WHITE, 2);
 		pars_clean_exit(data);
 	}
 	take_colors_value(data->read_file, p_floor, p_ceiling);

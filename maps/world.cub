@@ -1,24 +1,18 @@
-SO ./path_to_the_south_texture.xpm
-EA ./path_to_the_east_texture.xpm
+NO /path_to_the_north_dsadsatexture.xpm
+SO /path_to_the_soudsdth_texture.xpm
+WE /path_to_the_wesdsadsat_dasdsadsatexture.xpm
+EA /path_to_the_eadsaasdasadst_texture.xpm
 
-WE ./path_to_the_west_texture.xpm
-NO ./path_to_the_north_texture.xpm
-
-
-
-
-
-
-F 145,5,78
+F 255,255,255
 C 115,15,0
 
-111111111
+111111111 
 100000001
 100000001
 100000001
-100000001
+10  0000 1
 10000N001
 111000001
 100000001
 100000001
-111111111
+11111111 yukio

@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 08:48:22 by lauger            #+#    #+#             */
-/*   Updated: 2024/01/04 14:12:01 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 11:19:29 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	ft_atoi_base(char *str, char *base)
 			i++;
 			nb2 = nb_base(str[i], base);
 		}
+		if (nb2 == -1)
+			return (-1);
 		return (nb *= negative);
 	}
 	return (0);
