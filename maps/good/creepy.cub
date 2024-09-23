@@ -1,10 +1,10 @@
-NO textures/simonkraft/respawn_anchor_side0.xpm
-EA textures/simonkraft/respawn_anchor_side2.xpm
-SO textures/simonkraft/respawn_anchor_side4.xpm
-WE textures/simonkraft/respawn_anchor_side3.xpm
+NO /nfs/homes/ybarbot/Desktop/0VOGSPHERE/Cub3D/textures/wall_1.xpm
+EA /nfs/homes/ybarbot/Desktop/0VOGSPHERE/Cub3D/textures/wall_2.xpm
+SO /nfs/homes/ybarbot/Desktop/0VOGSPHERE/Cub3D/textures/wall_3.xpm
+WE /nfs/homes/ybarbot/Desktop/0VOGSPHERE/Cub3D/textures/wall_4.xpm
 
-C 35a,19,73
-F 15,6,40
+        F 20,           20,             20
+C 200,          200,200
 
 111111111111111
 111111000111111

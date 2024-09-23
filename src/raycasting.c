@@ -74,30 +74,34 @@ int render_next_frame(t_ray *ray)
 			ray->draw_end = SCREEN_HEIGHT - 1;
 
 		
-		// int tex_num = ray->int_map[ray->map_x][ray->map_y] - 1;
-
-		// double wall_x;
-		// if (ray->side == 0) wall_x = ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
-		// else           wall_x = ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
-		// wall_x -= floor((wall_x));
-
-		// int tex_x;
-		// tex_x = (int)(wall_x * (double)TEX_WIDTH);
-		// if(ray->side == 0 && ray->ray_dir_x > 0) tex_x = TEX_WIDTH - tex_x - 1;
-		// if(ray->side == 1 && ray->ray_dir_y < 0) tex_x = TEX_WIDTH - tex_x - 1;
-
-		// double step = 1.0 * TEX_HEIGHT / ray->line_height;
-		// double tex_pos = (ray->draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
-		// for(int y = ray->draw_start; y < ray->draw_end; y++)
-		// { 
-		//     int tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
-		//     tex_pos += step;
-		//     int color = texture[0][TEX_HEIGHT * tex_y + tex_x];
-		//     if(ray->side == 1) color = (color >> 1) & 8355711;
-		//     buffer[y][x] = color;
-		// }
-
+		//int tex_num = ray->int_map[ray->map_x][ray->map_y] - 1;
+		int i;
+		i = ray->draw_end;
+		while(i <= SCREEN_HEIGHT)
+		{
+			ray->addr[i * ray->size_line / 4 + x] = ray->data->f_hex_rgb;
+			i++;
+		}
+		i = ray->draw_start;
+		while(i >= 0)
+		{
+			ray->addr[i * ray->size_line / 4 + x] = ray->data->c_hex_rgb;
+			i--;
+		}
 		put_ray_colors(ray, &x);
+		double wall_x;
+		if (ray->side == 0) wall_x = ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
+		else           wall_x = ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
+		wall_x -= floor((wall_x));
+
+		ray->tex_x = (int)(wall_x * (double)ray->tx->width);
+		if(ray->side == 0 && ray->ray_dir_x > 0) ray->tex_x = ray->tx->width - ray->tex_x - 1;
+		if(ray->side == 1 && ray->ray_dir_y < 0) ray->tex_x = ray->tx->width - ray->tex_x - 1;
+
+		//double step = 1.0 * TEX_HEIGHT / ray->line_height;
+		//double tex_pos = (ray->draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
+
+		draw_texture(ray, &x);
 		x++;
 	}
 	ray->old_time = ray->time;
@@ -110,46 +114,58 @@ int render_next_frame(t_ray *ray)
 	ray->rot_speed = ray->frame_time * 6.0;
 	return (0);
 }
+void draw_texture(t_ray *ray, int *x)
+{
+    int y;
+    int color;
+    int tex_y;
+    int d;
+
+    y = ray->draw_start;
+    while (y <= ray->draw_end)
+    {
+        d = y * 256 - SCREEN_HEIGHT * 128 + ray->line_height * 128;
+        tex_y = ((d * ray->tx->height) / ray->line_height) / 256;
+        if (tex_y < 0)
+            tex_y = 0;
+        if (tex_y >= ray->tx->height)
+            tex_y = ray->tx->height - 1;
+
+		
+        color = *(int *)(ray->tx->addr + (tex_y * ray->tx->size_line + ray->tex_x * (ray->tx->bpp / 8)));
+        *(int *)(ray->addr + (y * ray->size_line + (*x) * (ray->bpp / 8))) = color;
+        y++;
+    }
+}
 
 void put_ray_colors(t_ray *ray, int *x)
 {
-	int i;
-
-	if(ray->side == 0 && ray->ray_dir_x > 0)
+	(void)x;
+	if(ray->side == 0 && ray->ray_dir_x < 0)
 	{
-		ray->addr = (int *)mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
-
-		ray->wall_color = 0xD2E0FB; //bleu tres clair pastel SUD
+		ray->tx = ray->tx_north;
+		//ray->wall_color = 0xB8001F; //rouge bordeaux NORTH
 	}
-	else if(ray->side == 0 && ray->ray_dir_x < 0)
+	else if(ray->side == 0 && ray->ray_dir_x > 0)
 	{
-		ray->wall_color = 0xB8001F; //rouge bordeaux NORTH
-
+		ray->tx = ray->tx_south;
+		//ray->wall_color = 0xD2E0FB; //bleu tres clair pastel SUD
 	}
 	else if(ray->side == 1 && ray->ray_dir_y > 0)
 	{
-		ray->wall_color = 0xC0EBA6; //vert clair EAST
+		ray->tx = ray->tx_east;
+		//ray->wall_color = 0xC0EBA6; //vert clair EAST
 	}
 	else
 	{
-		ray->wall_color = 0xFCCD2A; //jaune WEST
+		ray->tx = ray->tx_west;
+		//ray->wall_color = 0xFCCD2A; //jaune WEST
 	}
-	i = ray->draw_start;
-	while(i <= ray->draw_end)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->wall_color;
-		i++;
-	}
-	i = ray->draw_end;
-	while(i <= SCREEN_HEIGHT)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
-		i++;
-	}
-	i = ray->draw_start;
-	while(i >= 0)
-	{
-		ray->addr[i * ray->size_line / 4 + *x] = ray->data->c_hex_rgb;
-		i--;
-	}
+
+//	i = ray->draw_start;
+//	while(i <= ray->draw_end)
+//	{
+//		ray->width[i * ray->size_line / 4 + *x] = ray->wall_color;
+//		i++;
+//	}
 }

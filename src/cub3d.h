@@ -1,3 +1,4 @@
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -59,13 +60,23 @@ typedef struct s_rgb
 } t_rgb;
 
 
+typedef struct s_texture
+{
+	void *img;
+	char *addr;
+	int bpp;
+	int size_line;
+	int endian;
+	int width;
+	int height;
+} t_texture;
 // RAYCASTING & GRAPHICS
 typedef struct s_ray
 {
 	void        		*mlx;
 	void        		*mlx_win;
 	void        		*img;
-	int         		*addr;
+	char         		*addr;
 	int         		bpp;
 	int         		size_line;
 	int         		endian;
@@ -98,8 +109,14 @@ typedef struct s_ray
 	double  			move_speed;
 	double  			rot_speed;
 	double  			frame_time;
-	t_data				*data;
 	int					wall_color;
+	int					tex_x;
+	t_texture			*tx;
+	t_texture 			*tx_north;
+	t_texture 			*tx_south;
+	t_texture 			*tx_west;
+	t_texture 			*tx_east;
+	t_data				*data;
 } t_ray;
 
 typedef struct s_data
@@ -184,7 +201,7 @@ char*		deblank(char* input);
 void		init_ray(t_ray *ray, t_data *data, int **int_map);
 int			setup_mlx(t_ray *ray);
 int			clean_close_windows(void *param);
-void		paths_to_mlx_image(t_data *data);
+void		paths_to_mlx_image(t_ray *ray, t_data *data);
 
 //CLEAN_EXIT
 void    	pars_clean_exit(t_data *data);
@@ -195,6 +212,8 @@ void		all_clean_exit(t_data *data);
 void 		calculate_ray(t_ray *ray, int *x);
 int 		render_next_frame(t_ray *ray);
 void 		put_ray_colors(t_ray *ray, int *x);
+void		draw_texture(t_ray *ray, int *x);
+
 
 
 //RAY_UTILS
