@@ -56,7 +56,6 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 //     }
 // }
 
-
 void    init_ray(t_ray *ray, t_data *data, int **int_map)
 {
 	if (!ray)
