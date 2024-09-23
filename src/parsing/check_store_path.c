@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:07:51 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:11:14 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 12:36:52 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_path(t_read_file *rf, int num_line, char *id)
 	str = ft_substr(line, 2, ft_strlen(line) - 2);
 	if (str == NULL)
 		return (-1);
-	if (has_extenssion(str, ".xpm") == false)
+	if (has_extenssion(str, ".xpm") == false && has_extenssion(str, ".png") == false)
 	{
 		free(str);
 		free(line);

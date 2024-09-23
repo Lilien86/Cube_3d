@@ -115,7 +115,7 @@ typedef struct s_data
 	t_rgb				*c_int_rgb;
 	long long int		f_hex_rgb;
 	long long int		c_hex_rgb;
-	int					fd_map;
+	int					fd_file;
 	char**				map;
 	int					map_width;
 	int					map_height;

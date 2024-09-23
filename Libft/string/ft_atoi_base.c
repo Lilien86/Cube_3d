@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 08:48:22 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 11:19:29 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 12:55:50 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	checkerror(char *str)
 	return (i);
 }
 
-int	nb_base(char str, char *base)
+int	nb_base(char c, char *base)
 {
 	int	nb;
 
 	nb = 0;
 	while (base[nb] != '\0')
 	{
-		if (str == base[nb])
+		if (c == base[nb])
 			return (nb);
 		nb++;
 	}
@@ -84,14 +84,14 @@ int	ft_atoi_base(char *str, char *base)
 	{
 		negative = whitespaces(str, &i);
 		nb2 = nb_base(str[i], base);
+		if (nb2 == -1)
+			return (-1);
 		while (nb2 != -1)
 		{
 			nb = (nb * begin_len) + nb2;
 			i++;
 			nb2 = nb_base(str[i], base);
 		}
-		if (nb2 == -1)
-			return (-1);
 		return (nb *= negative);
 	}
 	return (0);
