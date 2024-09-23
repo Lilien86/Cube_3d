@@ -1,7 +1,7 @@
         // Draw the vertical line (wall)
         for (int y = ray->draw_start; y < ray->draw_end; y++)
         {
-            ray->addr[y * ray->line_length / 4 + x] = color;  // Write to the memory image
+            ray->addr[y * ray->size_line / 4 + x] = color;  // Write to the memory image
         }
 //dont fully understand this part lodev use thi sin C++ instead:
 

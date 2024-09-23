@@ -106,8 +106,8 @@ int render_next_frame(t_ray *ray)
 	if (ray->frame_time > 0)
 		//printf("FPS: %f\n", 1.0 / ray->frame_time);
 	mlx_put_image_to_window(ray->mlx, ray->mlx_win, ray->img, 0, 0);
-	ray->move_speed = ray->frame_time * 5.0;
-	ray->rot_speed = ray->frame_time * 3.0;
+	ray->move_speed = ray->frame_time * 10.0;
+	ray->rot_speed = ray->frame_time * 6.0;
 	return (0);
 }
 
@@ -117,6 +117,8 @@ void put_ray_colors(t_ray *ray, int *x)
 
 	if(ray->side == 0 && ray->ray_dir_x > 0)
 	{
+		ray->addr = (int *)mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
+
 		ray->wall_color = 0xD2E0FB; //bleu tres clair pastel SUD
 	}
 	else if(ray->side == 0 && ray->ray_dir_x < 0)
@@ -135,21 +137,19 @@ void put_ray_colors(t_ray *ray, int *x)
 	i = ray->draw_start;
 	while(i <= ray->draw_end)
 	{
-		ray->addr[i * ray->line_length / 4 + *x] = ray->wall_color;
+		ray->addr[i * ray->size_line / 4 + *x] = ray->wall_color;
 		i++;
 	}
 	i = ray->draw_end;
-	ray->floor_color = ray->data->f_hex_rgb;
 	while(i <= SCREEN_HEIGHT)
 	{
-		ray->addr[i * ray->line_length / 4 + *x] = ray->floor_color;
+		ray->addr[i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
 		i++;
 	}
 	i = ray->draw_start;
-	ray->ceilling_color = ray->data->c_hex_rgb;
 	while(i >= 0)
 	{
-		ray->addr[i * ray->line_length / 4 + *x] = ray->ceilling_color;
+		ray->addr[i * ray->size_line / 4 + *x] = ray->data->c_hex_rgb;
 		i--;
 	}
 }
