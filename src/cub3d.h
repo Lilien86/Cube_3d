@@ -109,7 +109,6 @@ typedef struct s_ray
 	double  			move_speed;
 	double  			rot_speed;
 	double  			frame_time;
-	int					wall_color;
 	int					tex_x;
 	t_texture			*tx;
 	t_texture 			*tx_north;
