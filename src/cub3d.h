@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 11:54:10 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:06:51 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 # define BUFFER_SIZE 1024
 # define MAX_RGB 255
 
+<<<<<<< HEAD
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
+=======
+#define SCREEN_WIDTH 896
+#define SCREEN_HEIGHT 512
+>>>>>>> master
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"

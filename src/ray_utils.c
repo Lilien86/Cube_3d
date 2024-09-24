@@ -10,7 +10,7 @@ long	get_current_time_millis(void)
 
 void	fill_floor_cell(t_ray *ray, int *i, int *x)
 {
-	while ((*i) <= SCREEN_HEIGHT)
+	while((*i) < SCREEN_HEIGHT)
 	{
 		ray->addr_c[*i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
 		(*i)++;

@@ -117,6 +117,8 @@ int		setup_mlx(t_ray *ray)
 	ray->addr_c = (int *)mlx_get_data_addr(ray->img, &ray->bpp_c, \
 	&ray->size_line_c, &ray->endian_c);
 	mlx_hook(ray->mlx_win, 2, 1L << 0, key_hook, ray);
+	ft_print_int_tab(ray->int_map, ray->data->map_height, ray->data->map_width);
+
 	mlx_loop_hook(ray->mlx, render_next_frame, ray);
 	mlx_hook(ray->mlx_win, 17, 0, clean_close_windows, ray->data);
 	mlx_loop(ray->mlx);
