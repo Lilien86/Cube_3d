@@ -1,12 +1,12 @@
-SO textures/gradient/south.xpm
-WE textures/gradient/south.xpm
-NO textures/gradient/south.xpm
-EA textures/gradient/south.xpm
+SO textures/wall_1.xpm
+WE textures/wall_2.xpm
+NO textures/wall_3.xpm
+EA textures/wall_4.xpm
 
 F 246,254,15
-C 249,78,31
+c 249,78,31
 
-111111111111111111111
+11111111111111111111
 101000001000000000001
 101010101011111110001
 100010100010000010001

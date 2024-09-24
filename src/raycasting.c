@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:10:36 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:10:40 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:01:54 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	draw_texture(t_ray *ray, int *x)
 void	assign_dir_tx(t_ray *ray)
 {
 	if (ray->side == 0 && ray->ray_dir_x < 0)
-		ray->tx = ray->tx_north;
-	else if (ray->side == 0 && ray->ray_dir_x > 0)
 		ray->tx = ray->tx_south;
+	else if (ray->side == 0 && ray->ray_dir_x > 0)
+		ray->tx = ray->tx_north;
 	else if (ray->side == 1 && ray->ray_dir_y > 0)
-		ray->tx = ray->tx_east;
-	else
 		ray->tx = ray->tx_west;
+	else
+		ray->tx = ray->tx_east;
 }
 
 void	assign_calculate_ray(t_ray *ray, int *i)
