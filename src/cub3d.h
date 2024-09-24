@@ -7,8 +7,6 @@
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
-#define TEX_WIDTH 64
-#define TEX_HEIGHT 64
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
