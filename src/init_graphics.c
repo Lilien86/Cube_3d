@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_graphics.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 12:52:58 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/24 12:54:16 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	free_img_mlx_error(t_ray *ray, t_data *data)
@@ -27,30 +39,35 @@ static void	free_img_mlx_error(t_ray *ray, t_data *data)
 	ft_free_tab_int(data->ray->int_map, data->map_height);
 	free(data->ray);
 	pars_clean_exit(data);
-	exit(0);
 }
 
-void	paths_to_mlx_image(t_ray *ray, t_data *data)
+void	paths_to_mlx_image(t_ray *r, t_data *data)
 {
-	if (!data || !ray)
+	if (!data || !r)
 		return ;
-	//ray->tx = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	ray->tx_north = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	ray->tx_south = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	ray->tx_west = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	ray->tx_east = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	ray->tx_north->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_north, &ray->tx_north->width, &ray->tx_north->height);
-	ray->tx_south->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_south, &ray->tx_south->width, &ray->tx_south->height);
-	ray->tx_west->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_west, &ray->tx_west->width, &ray->tx_west->height);
-	ray->tx_east->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_east, &ray->tx_east->width, &ray->tx_east->height);
-	if (ray->tx_north->img == NULL || ray->tx_south->img == NULL || ray->tx_west->img == NULL || ray->tx_east->img == NULL)
-	{
-		free_img_mlx_error(ray, data);
-	}
-	ray->tx_north->addr = mlx_get_data_addr(ray->tx_north->img, &ray->tx_north->bpp, &ray->tx_north->size_line, &ray->tx_north->endian);
-	ray->tx_south->addr = mlx_get_data_addr(ray->tx_south->img, &ray->tx_south->bpp, &ray->tx_south->size_line, &ray->tx_south->endian);
-	ray->tx_west->addr = mlx_get_data_addr(ray->tx_west->img, &ray->tx_west->bpp, &ray->tx_west->size_line, &ray->tx_west->endian);
-	ray->tx_east->addr = mlx_get_data_addr(ray->tx_east->img, &ray->tx_east->bpp, &ray->tx_east->size_line, &ray->tx_east->endian);
+	r->tx_north = (t_texture *)ft_calloc(sizeof(t_texture), 1);
+	r->tx_south = (t_texture *)ft_calloc(sizeof(t_texture), 1);
+	r->tx_west = (t_texture *)ft_calloc(sizeof(t_texture), 1);
+	r->tx_east = (t_texture *)ft_calloc(sizeof(t_texture), 1);
+	r->tx_north->img = mlx_xpm_file_to_image(data->ray->mlx,
+			data->rf->p_north, &r->tx_north->width, &r->tx_north->height);
+	r->tx_south->img = mlx_xpm_file_to_image(data->ray->mlx,
+			data->rf->p_south, &r->tx_south->width, &r->tx_south->height);
+	r->tx_west->img = mlx_xpm_file_to_image(data->ray->mlx,
+			data->rf->p_west, &r->tx_west->width, &r->tx_west->height);
+	r->tx_east->img = mlx_xpm_file_to_image(data->ray->mlx,
+			data->rf->p_east, &r->tx_east->width, &r->tx_east->height);
+	if (r->tx_north->img == NULL || r->tx_south->img == NULL
+		|| r->tx_west->img == NULL || r->tx_east->img == NULL)
+		free_img_mlx_error(r, data);
+	r->tx_north->addr = mlx_get_data_addr(r->tx_north->img, &r->tx_north->bpp,
+			&r->tx_north->size_line, &r->tx_north->endian);
+	r->tx_south->addr = mlx_get_data_addr(r->tx_south->img,
+			&r->tx_south->bpp, &r->tx_south->size_line, &r->tx_south->endian);
+	r->tx_west->addr = mlx_get_data_addr(r->tx_west->img,
+			&r->tx_west->bpp, &r->tx_west->size_line, &r->tx_west->endian);
+	r->tx_east->addr = mlx_get_data_addr(r->tx_east->img,
+			&r->tx_east->bpp, &r->tx_east->size_line, &r->tx_east->endian);
 }
 
 void	init_ray(t_ray *ray, t_data *data, int **int_map)
@@ -94,7 +111,7 @@ int	clean_close_windows(void *param)
 	return (0);
 }
 
-int		setup_mlx(t_ray *ray)
+int	setup_mlx(t_ray *ray)
 {
 	ray->mlx = mlx_init();
 	if (ray->mlx == NULL)
@@ -117,8 +134,6 @@ int		setup_mlx(t_ray *ray)
 	ray->addr_c = (int *)mlx_get_data_addr(ray->img, &ray->bpp_c, \
 	&ray->size_line_c, &ray->endian_c);
 	mlx_hook(ray->mlx_win, 2, 1L << 0, key_hook, ray);
-	ft_print_int_tab(ray->int_map, ray->data->map_height, ray->data->map_width);
-
 	mlx_loop_hook(ray->mlx, render_next_frame, ray);
 	mlx_hook(ray->mlx_win, 17, 0, clean_close_windows, ray->data);
 	mlx_loop(ray->mlx);

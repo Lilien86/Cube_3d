@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 08:55:41 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:31:17 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	grab_map(t_data *data)
 {
 	if (!data)
 		return ;
-	data->map = create_new_tab_from_n(data->read_file->tab_content, 6);
+	data->map = create_new_tab_from_n(data->rf->tab_content, 6);
 	if (data->map == NULL)
 	{
 		ft_putstr_fd(RED"Error:\nmalloc failed"WHITE, 2);
