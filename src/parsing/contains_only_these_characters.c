@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contains_only_these_caractere.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:38:17 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:44:09 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:18:14 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	loop_map(char **map, int i, int j, int *player)
 	return (0);
 }
 
-int	contains_only_these_caractere(char **map)
+int	contains_only_these_characters(char **map)
 {
 	int	i;
 	int	j;

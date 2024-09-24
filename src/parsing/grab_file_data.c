@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:22:21 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	valid_value(t_data *data, char *id, int i)
 	{
 		if (check_line(data->rf, id, i, 2) != 0)
 		{
-			ft_printf(RED "Error:\nFile format is incorect\n" WHITE);
+			ft_printf(RED "Error:\nFile format is incorrect\n" WHITE);
 			pars_clean_exit(data);
 		}
 		if (check_path(data->rf, i, id) != 0)

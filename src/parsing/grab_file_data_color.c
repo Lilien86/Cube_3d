@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data_color.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:22:04 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	is_in_rang(int nb[6], int start, int end)
+int	is_in_range(int nb[6], int start, int end)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ static int	search_id_color(t_data *data, char *id)
 	{
 		if (check_line(data->rf, id, i, 1) == -2)
 		{
-			ft_putstr_fd(RED "Error:\nFile format is incorect\n" WHITE, 2);
+			ft_putstr_fd(RED "Error:\nFile format is incorrect\n" WHITE, 2);
 			pars_clean_exit(data);
 		}
 		else if (check_line(data->rf, id, i, 1) == 0)
@@ -61,8 +61,8 @@ void	grab_color(t_data *data)
 	p_ceiling = search_id_color(data, "C ");
 	if (p_floor == -1 || p_ceiling == -1)
 	{
-		ft_putstr_fd(RED "Error:\nFile format is incorect:"
-			WHITE" there are not value flor r ceilling\n"WHITE, 2);
+		ft_putstr_fd(RED "Error:\nFile format is incorrect:"
+			WHITE" there are no floor or ceilling values\n"WHITE, 2);
 		pars_clean_exit(data);
 	}
 	take_colors_value(data->rf, p_floor, p_ceiling);

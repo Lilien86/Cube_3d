@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:06:53 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:18:35 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,12 @@ int			open_file(char *file, t_data *data);
 bool		has_extenssion(char *filename, char *extenssion);
 t_read_file	*read_file_to_string(int fd, t_data *data);
 int			check_path(t_read_file *rf, int num_line, char *id);
-int			contains_only_these_caractere(char **map);
+int			contains_only_these_characters(char **map);
 void		string_to_tab(t_read_file *rf);
 void		grab_data(t_data *data);
 int			check_line(t_read_file *rf, char *id, int num_line,
 				int value_check);
-int			is_in_rang(int nb[6], int start, int end);
+int			is_in_range(int nb[6], int start, int end);
 void		grab_color(t_data *data);
 void		grab_map(t_data *data);
 int			replace_space_to_wall(t_data *data);

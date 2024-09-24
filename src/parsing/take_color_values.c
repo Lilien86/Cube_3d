@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_color_values.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:21:24 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 12:55:58 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:22:18 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	check_and_store_calor_values(char **f_tab,
 	tab_num[3] = ft_atoi_base(c_tab[0], "0123456789");
 	tab_num[4] = ft_atoi_base(c_tab[1], "0123456789");
 	tab_num[5] = ft_atoi_base(c_tab[2], "0123456789");
-	if (is_in_rang(tab_num, 0, 255) == 1)
+	if (is_in_range(tab_num, 0, 255) == 1)
 	{
-		ft_putstr_fd(RED "Error:\nFile format is incorect\n"WHITE, 2);
+		ft_putstr_fd(RED "Error:\nFile format is incorrect\n"WHITE, 2);
 		ft_free_tab(f_tab);
 		ft_free_tab(c_tab);
 		pars_clean_exit(data);

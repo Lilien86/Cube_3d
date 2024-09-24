@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:22:10 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:30:59 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:19:12 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	manage_utilization_flood_fill(t_data *data, char **c_map)
 			if (flood_fill(c_map, i, j) == -1)
 			{
 				ft_putstr_fd(RED"Error:\nInvalid Map:"
-					WHITE" must be around of walls\n", 2);
+					WHITE" must be surrounded by walls\n", 2);
 				ft_free_tab(c_map);
 				pars_clean_exit(data);
 			}
