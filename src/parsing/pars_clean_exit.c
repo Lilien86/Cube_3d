@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:12:27 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:12:29 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:20:34 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	pars_clean_exit(t_data *data)
 		free(data->read_file->str_content);
 	if (data->read_file->tab_content)
 		ft_free_tab(data->read_file->tab_content);
+	close (data->fd_file);
 	if (data->read_file)
 		free(data->read_file);
 	if (data->c_int_rgb)
