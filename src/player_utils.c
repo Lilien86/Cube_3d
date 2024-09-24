@@ -42,5 +42,4 @@ void set_player_position(t_ray *ray, int x, int y, char direction)
 	ray->pos_y = x + 0.5;
     set_player_pos_NS(ray, direction);
     set_player_pos_EW(ray, direction);
-	printf("Player position set to: (%f, %f)\n", ray->pos_x, ray->pos_y);
 }
