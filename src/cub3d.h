@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:55:27 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:20:09 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void		pars_clean_return(t_data *data);
 int			clean_close_windows(void *param);
 int			open_textures_paths(t_data *data, char **c_map);
 int			take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
-char		*deblank(char *input);
+char		*deblank(char *input, int state);
 void		init_ray(t_ray *ray, t_data *data, int **int_map);
 int			setup_mlx(t_ray *ray);
 int			clean_close_windows(void *param);

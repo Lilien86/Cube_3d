@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_store_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:07:51 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:47:27 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:19:33 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_path(t_read_file *rf, int num_line, char *id)
 
 	if (rf == NULL)
 		pars_clean_exit(rf->data);
-	line = deblank(rf->tab_content[num_line]);
+	line = deblank(rf->tab_content[num_line], 0);
 	if (!line)
 		return (-1);
 	str = ft_substr(line, 2, ft_strlen(line) - 2);
