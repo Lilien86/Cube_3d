@@ -16,12 +16,26 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 	if (ray->tx_north->img == NULL || ray->tx_south->img == NULL || ray->tx_west->img == NULL || ray->tx_east->img == NULL)
 	{
 		printf(RED"Error:\nimage paths is incorrect\n"WHITE);
-		mlx_destroy_image(ray->mlx, ray->tx_north->img);
-		mlx_destroy_image(ray->mlx, ray->tx_south->img);
+		if (ray->tx_north->img)
+			mlx_destroy_image(ray->mlx, ray->tx_north->img);
+		if (ray->tx_south->img)
+			mlx_destroy_image(ray->mlx, ray->tx_south->img);
+		if (ray->tx_west->img)
 		mlx_destroy_image(ray->mlx, ray->tx_west->img);
-		mlx_destroy_image(ray->mlx, ray->tx_east->img);
+		if (ray->tx_east->img)
+			mlx_destroy_image(ray->mlx, ray->tx_east->img);
 		if (data->ray->mlx)
 			mlx_destroy_display(data->ray->mlx);
+		if (ray->tx)
+			free(ray->tx);
+		if (ray->tx_north)
+			free(ray->tx_north);
+		if (ray->tx_south)
+			free(ray->tx_south);
+		if (ray->tx_west)
+			free(ray->tx_west);
+		if (ray->tx_east)
+			free(ray->tx_east);
 		free(data->ray->mlx);
 		ft_free_tab_int(data->ray->int_map, data->map_height);
 		free(data->ray);
