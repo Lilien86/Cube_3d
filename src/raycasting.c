@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-void dda_algo(t_ray *ray)
+void	dda_algo(t_ray *ray)
 {
-		while (ray->hit == 0)
+	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -21,36 +21,36 @@ void dda_algo(t_ray *ray)
 	}
 }
 
-void draw_texture(t_ray *ray, int *x)
+void	draw_texture(t_ray *ray, int *x)
 {
-    int y;
-    int color;
-    int tex_y;
-    int d;
+	int	y;
+	int	color;
+	int	tex_y;
+	int	d;
 
-    y = ray->draw_start;
-    while (y <= ray->draw_end)
-    {
-        d = y * 256 - SCREEN_HEIGHT * 128 + ray->line_height * 128;
-        tex_y = ((d * ray->tx->height) / ray->line_height) / 256;
-        if (tex_y < 0)
-            tex_y = 0;
-        if (tex_y >= ray->tx->height)
-            tex_y = ray->tx->height - 1;
-        color = *(int *)(ray->tx->addr + (tex_y * ray->tx->size_line \
+	y = ray->draw_start;
+	while (y <= ray->draw_end)
+	{
+		d = y * 256 - SCREEN_HEIGHT * 128 + ray->line_height * 128;
+		tex_y = ((d * ray->tx->height) / ray->line_height) / 256;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= ray->tx->height)
+			tex_y = ray->tx->height - 1;
+		color = *(int *)(ray->tx->addr + (tex_y * ray->tx->size_line \
 		+ ray->tex_x * (ray->tx->bpp / 8)));
-        *(int *)(ray->addr + (y * ray->size_line + (*x) * (ray->bpp / 8))) = color;
-        y++;
-    }
+		*(int *)(ray->addr + (y * ray->size_line + (*x) * (ray->bpp / 8))) = color;
+		y++;
+	}
 }
 
-void assign_dir_tx(t_ray *ray)
+void	assign_dir_tx(t_ray *ray)
 {
-	if(ray->side == 0 && ray->ray_dir_x < 0)
+	if (ray->side == 0 && ray->ray_dir_x < 0)
 		ray->tx = ray->tx_north;
-	else if(ray->side == 0 && ray->ray_dir_x > 0)
+	else if (ray->side == 0 && ray->ray_dir_x > 0)
 		ray->tx = ray->tx_south;
-	else if(ray->side == 1 && ray->ray_dir_y > 0)
+	else if (ray->side == 1 && ray->ray_dir_y > 0)
 		ray->tx = ray->tx_east;
 	else
 		ray->tx = ray->tx_west;
@@ -58,9 +58,9 @@ void assign_dir_tx(t_ray *ray)
 
 int	render_next_frame(t_ray *ray)
 {
-	int x;
-	int i;
-	
+	int	x;
+	int	i;
+
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{

@@ -24,7 +24,7 @@ int	find_max_lenght(char **map)
 	return (max_lenght);
 }
 
-int **allocate_int_map(t_data *data)
+int	**allocate_int_map(t_data *data)
 {
 	int **int_map;
 	int i;
@@ -61,10 +61,10 @@ void	fill_map_holes(t_data *data, int **int_map, int *x, int *y)
 	}
 	(*y)++;
 }
-void parse_map(t_ray *ray, t_data *data, int **int_map)
+void	parse_map(t_ray *ray, t_data *data, int **int_map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 	int	size_line;
 
 	y = 0;
