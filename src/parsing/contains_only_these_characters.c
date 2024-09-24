@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contains_only_these_caractere.c                    :+:      :+:    :+:   */
+/*   contains_only_these_characters.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 09:38:17 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:18:14 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:54:08 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static int	loop_map(char **map, int i, int j, int *player)
 {
+	if (map[i][0] == 'N' || map[i][0] == 'S' || map[i][0] == 'E'
+		|| map[i][0] == 'W')
+		return (1);
 	if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' '
 		&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
 		&& map[i][j] != 'W')
