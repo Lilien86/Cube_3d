@@ -2,8 +2,8 @@
 
 static void	rotate_player(int keycode, t_ray *ray)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (keycode == 65363)
 	{
@@ -29,16 +29,20 @@ static void	move_player_y(int keycode, t_ray *ray)
 {
 	if (keycode == 119)
 	{
-		if (ray->int_map[(int)(ray->pos_x + ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
+		if (ray->int_map[(int)(ray->pos_x + ray->dir_x
+				* ray->move_speed)][(int)(ray->pos_y)] == 0)
 			ray->pos_x += ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y * ray->move_speed)] == 0)
+		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y
+				* ray->move_speed)] == 0)
 			ray->pos_y += ray->dir_y * ray->move_speed;
 	}
 	if (keycode == 115)
 	{
-		if (ray->int_map[(int)(ray->pos_x - ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
+		if (ray->int_map[(int)(ray->pos_x - ray->dir_x
+				* ray->move_speed)][(int)(ray->pos_y)] == 0)
 			ray->pos_x -= ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y - ray->dir_y * ray->move_speed)] == 0)
+		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
+				- ray->dir_y * ray->move_speed)] == 0)
 			ray->pos_y -= ray->dir_y * ray->move_speed;
 	}
 }
@@ -47,16 +51,20 @@ static void	move_player_x(int keycode, t_ray *ray)
 {
 	if (keycode == 100)
 	{
-		if (ray->int_map[(int)(ray->pos_x - ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
+		if (ray->int_map[(int)(ray->pos_x
+				- ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
 			ray->pos_y -= ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y - ray->dir_y * ray->move_speed)] == 0)
+		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
+				- ray->dir_y * ray->move_speed)] == 0)
 			ray->pos_x += ray->dir_y * ray->move_speed;
 	}
 	if (keycode == 97)
 	{
-		if (ray->int_map[(int)(ray->pos_x + ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
+		if (ray->int_map[(int)(ray->pos_x + ray->dir_x
+				* ray->move_speed)][(int)(ray->pos_y)] == 0)
 			ray->pos_y += ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y * ray->move_speed)] == 0)
+		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
+				+ ray->dir_y * ray->move_speed)] == 0)
 			ray->pos_x -= ray->dir_y * ray->move_speed;
 	}
 }

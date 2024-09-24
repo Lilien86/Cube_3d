@@ -8,7 +8,7 @@ static void	free_img_mlx_error(t_ray *ray, t_data *data)
 	if (ray->tx_south->img)
 		mlx_destroy_image(ray->mlx, ray->tx_south->img);
 	if (ray->tx_west->img)
-	mlx_destroy_image(ray->mlx, ray->tx_west->img);
+		mlx_destroy_image(ray->mlx, ray->tx_west->img);
 	if (ray->tx_east->img)
 		mlx_destroy_image(ray->mlx, ray->tx_east->img);
 	if (data->ray->mlx)
@@ -94,7 +94,7 @@ int	clean_close_windows(void *param)
 	return (0);
 }
 
-int setup_mlx(t_ray *ray)
+int		setup_mlx(t_ray *ray)
 {
 	ray->mlx = mlx_init();
 	if (ray->mlx == NULL)
@@ -103,15 +103,17 @@ int setup_mlx(t_ray *ray)
 		return (1);
 	}
 	paths_to_mlx_image(ray, ray->data);
-	ray->mlx_win = mlx_new_window(ray->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
+	ray->mlx_win = mlx_new_window(ray->mlx,
+			SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	if (!ray->mlx_win)
 	{
 		free(ray->mlx_win);
 		printf("Error:mlx_new_window() failed\n");
-		return(1);
+		return (1);
 	}
 	ray->img = mlx_new_image(ray->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	ray->addr = mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
+	ray->addr = mlx_get_data_addr(ray->img, &ray->bpp,
+			&ray->size_line, &ray->endian);
 	ray->addr_c = (int *)mlx_get_data_addr(ray->img, &ray->bpp_c, \
 	&ray->size_line_c, &ray->endian_c);
 	mlx_hook(ray->mlx_win, 2, 1L << 0, key_hook, ray);
