@@ -5,12 +5,11 @@
 # define BUFFER_SIZE 1024
 # define MAX_RGB 255
 
-
 #define SCREEN_WIDTH 896
 #define SCREEN_HEIGHT 512
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
-//COLORS
+
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
 # define GREEN		"\033[0;32m"
@@ -59,7 +58,6 @@ typedef struct s_rgb
 	unsigned int		blue;
 } t_rgb;
 
-
 typedef struct s_texture
 {
 	void *img;
@@ -70,7 +68,7 @@ typedef struct s_texture
 	int width;
 	int height;
 } t_texture;
-// RAYCASTING & GRAPHICS
+
 typedef struct s_ray
 {
 	void        		*mlx;
@@ -80,6 +78,10 @@ typedef struct s_ray
 	int         		bpp;
 	int         		size_line;
 	int         		endian;
+	int					bpp_c;
+	int					size_line_c;
+	int					endian_c;
+	int					*addr_c;
 	int     			**int_map;
 	double				pos_x;
 	double				pos_y;
@@ -110,6 +112,7 @@ typedef struct s_ray
 	double  			rot_speed;
 	double  			frame_time;
 	int					tex_x;
+	double				wall_x;
 	t_texture			*tx;
 	t_texture 			*tx_north;
 	t_texture 			*tx_south;
@@ -138,95 +141,44 @@ typedef struct s_data
 	t_ray				*ray;
 } t_data;
 
-
-
-//--------------------------------------------LILIEN
-
-//open_file_check_format.c
 int			open_file(char *file, t_data *data);
 bool		has_extenssion(char *filename, char *extenssion);
-
-//file_to_string.c
 t_read_file	*read_file_to_string(int fd, t_data *data);
-
-//check_store_path.c
-int	check_path(t_read_file *rf, int num_line, char *id);
-
-//contains_only_these_caractere.c
-int	contains_only_these_caractere(char **map);
-
-//string_to_tab.c
+int			check_path(t_read_file *rf, int num_line, char *id);
+int			contains_only_these_caractere(char **map);
 void		string_to_tab(t_read_file *rf);
-
-//grab_file_data.c
 void		grab_data(t_data *data);
 int			check_line(t_read_file *rf, char *id, int num_line, int value_check);
 int			is_in_rang(int nb[6], int start, int end);
-
-//grab_file_data_color.c
 void		grab_color(t_data *data);
-
-//grab_file_data_map.c
 void		grab_map(t_data *data);
-
-//flood_fill.c
 int			replace_space_to_wall(t_data *data);
 int			flood_fill(char **c_map, int pos_x, int pos_y);
 void		manage_utilization_flood_fill(t_data *data, char **c_map);
-
-//TEMPOARY FUNCTIONS
 void    	print_2d_array(char **array, int rows);
-
-//CLEAN_EXIT
 void    	pars_clean_exit(t_data *data);
 void    	pars_clean_return(t_data *data);
 int			clean_close_windows(void *param);
-
-//open_textures.c
 int			open_textures_paths(t_data *data, char **c_map);
-
-//take_color_values.c
-int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
-
-//utils_parse
+int			take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
 char*		deblank(char* input);
-//--------------------------------------------LILIEN
-
-
-
-
-//--------------------------------------------YVANN
-
-//INIT_GRAPHICS
 void		init_ray(t_ray *ray, t_data *data, int **int_map);
 int			setup_mlx(t_ray *ray);
 int			clean_close_windows(void *param);
 void		paths_to_mlx_image(t_ray *ray, t_data *data);
-
-//CLEAN_EXIT
 void    	pars_clean_exit(t_data *data);
 void    	pars_clean_return(t_data *data);
 void		all_clean_exit(t_data *data);
-
-//RAYCASTING
 void 		calculate_ray(t_ray *ray, int *x);
 int 		render_next_frame(t_ray *ray);
-void 		put_ray_colors(t_ray *ray, int *x);
+void		assign_dir_tx(t_ray *ray);
+void		fill_floor_cell(t_ray *ray, int *i, int *x);
 void		draw_texture(t_ray *ray, int *x);
-
-
-
-//RAY_UTILS
+void		texture_calculations(t_ray *ray);
 long 		get_current_time_millis(void);
-
-//MAP_UTILS
 int			**allocate_int_map(t_data *data);
 void 		set_player_position(t_ray *ray, int x, int y, char direction);
 void 		parse_map(t_ray *ray, t_data *data, int **int_map);
-
-//KEY_MOVE
 int			key_hook(int keycode, t_ray *ray);
-
-//--------------------------------------------YVANN
 
 #endif

@@ -53,30 +53,6 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 	ray->tx_east->addr = mlx_get_data_addr(ray->tx_east->img, &ray->tx_east->bpp, &ray->tx_east->size_line, &ray->tx_east->endian);
 
 }
-// static void draw_texture(t_ray *ray, t_game *game, t_mlx *mlx, int x)
-// {
-//     int y;
-//     int color;
-//     int tex_y;
-//     int d;
-
-//     (void)game;
-//     y = ray->draw_start;
-//     while (y <= ray->draw_end)
-//     {
-//         d = y * 256 - WIN_HEIGHT * 128 + ray->line_height * 128;
-//         tex_y = ((d * ray->texture->height) / ray->line_height) / 256;
-//         if (tex_y < 0)
-//             tex_y = 0;
-//         if (tex_y >= ray->texture->height)
-//             tex_y = ray->texture->height - 1;
-
-//         color = *(int *)(ray->texture->pixels + (tex_y * ray->texture->size_line + ray->tex_x * (ray->texture->bpp / 8)));
-//         *(int *)(mlx->img->pixels + (y * mlx->img->size_line + x * (mlx->img->bpp / 8))) = color;
-//         y++;
-//     }
-// }
-
 
 void    init_ray(t_ray *ray, t_data *data, int **int_map)
 {
@@ -131,7 +107,8 @@ int setup_mlx(t_ray *ray)
 	}
 	ray->img = mlx_new_image(ray->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	ray->addr = mlx_get_data_addr(ray->img, &ray->bpp, &ray->size_line, &ray->endian);
-
+	ray->addr_c = (int *)mlx_get_data_addr(ray->img, &ray->bpp_c, \
+	&ray->size_line_c, &ray->endian_c);
 	mlx_hook(ray->mlx_win, 2, 1L << 0, key_hook, ray);
 	mlx_loop_hook(ray->mlx, render_next_frame, ray);
 	mlx_hook(ray->mlx_win, 17, 0, clean_close_windows, ray->data);

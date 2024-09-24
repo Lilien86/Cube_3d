@@ -43,3 +43,17 @@ void calculate_ray(t_ray *ray, int *x)
 	ray->hit = 0;
     ray_dir(ray);
 }
+
+void texture_calculations(t_ray *ray)
+{
+	if (ray->side == 0)
+		ray->wall_x = ray->pos_y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		ray->wall_x = ray->pos_x + ray->perp_wall_dist * ray->ray_dir_x;
+	ray->wall_x -= floor((ray->wall_x));
+	ray->tex_x = (int)(ray->wall_x * (double)ray->tx->width);
+	if(ray->side == 0 && ray->ray_dir_x > 0)
+		ray->tex_x = ray->tx->width - ray->tex_x - 1;
+	if(ray->side == 1 && ray->ray_dir_y < 0)
+		ray->tex_x = ray->tx->width - ray->tex_x - 1;
+}
