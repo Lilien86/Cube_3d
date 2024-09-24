@@ -34,7 +34,7 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 {
 	if (!data || !ray)
 		return ;
-	ray->tx = (t_texture *)ft_calloc(sizeof(t_texture), 1);
+	//ray->tx = (t_texture *)ft_calloc(sizeof(t_texture), 1);
 	ray->tx_north = (t_texture *)ft_calloc(sizeof(t_texture), 1);
 	ray->tx_south = (t_texture *)ft_calloc(sizeof(t_texture), 1);
 	ray->tx_west = (t_texture *)ft_calloc(sizeof(t_texture), 1);
@@ -73,28 +73,14 @@ int	clean_close_windows(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	
-	if (data->ray->tx_north->img)
-		mlx_destroy_image(data->ray->mlx, data->ray->tx_north->img);
-	if (data->ray->tx_south->img)
-		mlx_destroy_image(data->ray->mlx, data->ray->tx_south->img);
-	if (data->ray->tx_west->img)
+	mlx_destroy_image(data->ray->mlx, data->ray->tx_north->img);
+	mlx_destroy_image(data->ray->mlx, data->ray->tx_south->img);
 	mlx_destroy_image(data->ray->mlx, data->ray->tx_west->img);
-	if (data->ray->tx_east->img)
-		mlx_destroy_image(data->ray->mlx, data->ray->tx_east->img);
-
-	if (data->ray->tx)
-		free(data->ray->tx);
-
-	if (data->ray->tx_north)
-		free(data->ray->tx_north);
-	if (data->ray->tx_south)
-		free(data->ray->tx_south);
-	if (data->ray->tx_west)
-		free(data->ray->tx_west);
-	if (data->ray->tx_east)
-		free(data->ray->tx_east);
-
+	mlx_destroy_image(data->ray->mlx, data->ray->tx_east->img);
+	free(data->ray->tx_north);
+	free(data->ray->tx_south);
+	free(data->ray->tx_west);
+	free(data->ray->tx_east);
 	if (data->ray->img)
 		mlx_destroy_image(data->ray->mlx, data->ray->img);
 	if (data->ray->mlx)
