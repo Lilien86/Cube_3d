@@ -6,13 +6,13 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:40:31 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:40:44 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:20:33 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	*deblank(char *input)
+char	*deblank(char *input, int state)
 {
 	char	*output;
 	int		i;
@@ -29,6 +29,11 @@ char	*deblank(char *input)
 			j--;
 		i++;
 		j++;
+	}
+	if (state == 1)
+	{
+		if (input)
+			free(input);
 	}
 	return (output);
 }

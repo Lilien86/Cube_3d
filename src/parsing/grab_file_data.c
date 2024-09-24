@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   grab_file_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:22:21 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:24:01 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../cub3d.h"
 
@@ -19,7 +20,7 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 
 	result = 0;
 	line = NULL;
-	line = deblank(rf->tab_content[num_line]);
+	line = deblank(rf->tab_content[num_line], 0);
 	if (rf == NULL || ft_strlen(id) < (size_t)value_check || !line)
 		return (-2);
 	result = ft_strncmp(line, id, value_check);

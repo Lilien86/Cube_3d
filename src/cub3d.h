@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:18:35 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:23:58 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -170,7 +171,7 @@ void		pars_clean_return(t_data *data);
 int			clean_close_windows(void *param);
 int			open_textures_paths(t_data *data, char **c_map);
 int			take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
-char		*deblank(char *input);
+char		*deblank(char *input, int state);
 void		init_ray(t_ray *ray, t_data *data, int **int_map);
 int			setup_mlx(t_ray *ray);
 int			clean_close_windows(void *param);
