@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 10:31:26 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 
 static int	valid_value(t_data *data, char *id, int i)
 {
-	if (ft_strstr(data->read_file->tab_content[i], id))
+	if (ft_strstr(data->rf->tab_content[i], id))
 	{
-		if (check_line(data->read_file, id, i, 2) != 0)
+		if (check_line(data->rf, id, i, 2) != 0)
 		{
 			ft_printf(RED "Error:\nFile format is incorect\n" WHITE);
 			pars_clean_exit(data);
 		}
-		if (check_path(data->read_file, i, id) != 0)
+		if (check_path(data->rf, i, id) != 0)
 		{
 			ft_printf(RED "Error:\nFile not have the extenssion .xpm\n" WHITE);
 			pars_clean_exit(data);
@@ -50,9 +50,9 @@ static void	grab_sprite_paths(t_data *data)
 	int	i;
 
 	i = 0;
-	if (data->read_file == NULL)
+	if (data->rf == NULL)
 		pars_clean_exit(data);
-	while (data->read_file->tab_content[i])
+	while (data->rf->tab_content[i])
 	{
 		valid_value(data, "NO", i);
 		valid_value(data, "SO", i);

@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:42:57 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 12:41:39 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static int	search_id_color(t_data *data, char *id)
 
 	i = 0;
 	p_color = -1;
-	while (data->read_file->tab_content[i])
+	while (data->rf->tab_content[i])
 	{
-		if (check_line(data->read_file, id, i, 1) == -2)
+		if (check_line(data->rf, id, i, 1) == -2)
 		{
 			ft_putstr_fd(RED "Error:\nFile format is incorect\n" WHITE, 2);
 			pars_clean_exit(data);
 		}
-		else if (check_line(data->read_file, id, i, 1) == 0)
+		else if (check_line(data->rf, id, i, 1) == 0)
 		{
 			p_color = i;
 			break ;
@@ -65,7 +65,7 @@ void	grab_color(t_data *data)
 			WHITE" there are not value flor r ceilling\n"WHITE, 2);
 		pars_clean_exit(data);
 	}
-	take_colors_value(data->read_file, p_floor, p_ceiling);
+	take_colors_value(data->rf, p_floor, p_ceiling);
 	data->f_hex_rgb = (data->f_int_rgb->red << 16)
 		+ (data->f_int_rgb->green << 8) + (data->f_int_rgb->blue);
 	data->c_hex_rgb = (data->c_int_rgb->red << 16)

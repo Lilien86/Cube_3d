@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:40:53 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 13:41:16 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:48:37 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	open_textures_paths(t_data *data, char **c_map)
 	if (!data)
 		return (-1);
 	(void)c_map;
-	handle_opening_folder(data, c_map, data->read_file->p_north);
-	handle_opening_folder(data, c_map, data->read_file->p_south);
-	handle_opening_folder(data, c_map, data->read_file->p_west);
-	handle_opening_folder(data, c_map, data->read_file->p_east);
-	handle_opening_file(data, c_map, data->read_file->p_north);
-	handle_opening_file(data, c_map, data->read_file->p_south);
-	handle_opening_file(data, c_map, data->read_file->p_west);
-	handle_opening_file(data, c_map, data->read_file->p_east);
+	handle_opening_folder(data, c_map, data->rf->p_north);
+	handle_opening_folder(data, c_map, data->rf->p_south);
+	handle_opening_folder(data, c_map, data->rf->p_west);
+	handle_opening_folder(data, c_map, data->rf->p_east);
+	handle_opening_file(data, c_map, data->rf->p_north);
+	handle_opening_file(data, c_map, data->rf->p_south);
+	handle_opening_file(data, c_map, data->rf->p_west);
+	handle_opening_file(data, c_map, data->rf->p_east);
 	return (0);
 }

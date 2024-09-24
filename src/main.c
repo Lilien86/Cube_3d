@@ -34,8 +34,8 @@ int	main(int ac, char **av)
 	}
 	init_data(data);
 	data->fd_file = open_file(av[1], data);
-	data->read_file = read_file_to_string(data->fd_file, data);
-	string_to_tab(data->read_file);
+	data->rf = read_file_to_string(data->fd_file, data);
+	string_to_tab(data->rf);
 	grab_data(data);
 	ray = (t_ray *)malloc(sizeof(t_ray));
 	ray->int_map = allocate_int_map(data);
