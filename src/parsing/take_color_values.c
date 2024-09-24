@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_color_values.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:21:24 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:24:16 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:28:43 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	check_and_store_calor_values(char **f_tab,
 	data->c_int_rgb->blue = tab_num[5];
 }
 
-static void	do_value_conform(char **f_tab, char **c_tab, t_read_file *rf)
+static void	is_value_conform(char **f_tab, char **c_tab, t_read_file *rf)
 {
 	if (ft_tab_len(f_tab) != 3 || ft_tab_len(c_tab) != 3)
 	{
 		ft_putstr_fd(RED"Error:\nBad Syntax:"
-			WHITE" value rgb requiere 3 values (value2,value2,value3)\n", 2);
+			WHITE" value rgb require 3 values (value1,value2,value3)\n", 2);
 		ft_free_tab(f_tab);
 		ft_free_tab(c_tab);
 		pars_clean_exit(rf->data);
@@ -82,6 +82,6 @@ int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling)
 	}
 	free(f_str);
 	free(c_str);
-	do_value_conform(f_tab, c_tab, rf);
+	is_value_conform(f_tab, c_tab, rf);
 	return (0);
 }

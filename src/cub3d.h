@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:23:58 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:27:34 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct s_data
 }	t_data;
 
 int			open_file(char *file, t_data *data);
-bool		has_extenssion(char *filename, char *extenssion);
+bool		has_extension(char *filename, char *extension);
 t_read_file	*read_file_to_string(int fd, t_data *data);
 int			check_path(t_read_file *rf, int num_line, char *id);
 int			contains_only_these_characters(char **map);
