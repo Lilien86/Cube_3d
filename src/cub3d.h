@@ -172,6 +172,7 @@ void		all_clean_exit(t_data *data);
 void 		calculate_ray(t_ray *ray, int *x);
 int 		render_next_frame(t_ray *ray);
 void		assign_dir_tx(t_ray *ray);
+void		assign_calculate_ray(t_ray *ray, int *i);
 void		fill_floor_cell(t_ray *ray, int *i, int *x);
 void		draw_texture(t_ray *ray, int *x);
 void		texture_calculations(t_ray *ray);

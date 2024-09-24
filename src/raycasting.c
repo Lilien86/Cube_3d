@@ -56,6 +56,24 @@ void	assign_dir_tx(t_ray *ray)
 		ray->tx = ray->tx_west;
 }
 
+void assign_calculate_ray(t_ray *ray, int *i)
+{
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+	else
+		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+
+	ray->line_height = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (ray->draw_end >= SCREEN_HEIGHT)
+		ray->draw_end = SCREEN_HEIGHT - 1;
+
+	*i = ray->draw_end;
+}
+
 int	render_next_frame(t_ray *ray)
 {
 	int	x;
