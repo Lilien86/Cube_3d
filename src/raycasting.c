@@ -22,32 +22,6 @@ void dda_algo(t_ray *ray)
 	}
 }
 
-//func for check wich side choose for the texure line
-//trabsform xpm load to get data adrresse
-
-// static void draw_texture(t_ray *ray, int x)
-// {
-//     int y;
-//     int color;
-//     int tex_y;
-//     int d;
-
-//     y = ray->draw_start;
-//     while (y <= ray->draw_end)
-//     {
-//         d = y * 256 - SCREEN_HEIGHT * 128 + ray->line_height * 128;
-//         tex_y = ((d * ray->texture->height) / ray->line_height) / 256;
-//         if (tex_y < 0)
-//             tex_y = 0;
-//         if (tex_y >= ray->texture->height)
-//             tex_y = ray->texture->height - 1;
-
-//         color = *(int *)(ray->texture->pixels + (tex_y * ray->texture->size_line + ray->tex_x * (ray->texture->bpp / 8)));
-//         *(int *)(mlx->img->pixels + (y * mlx->img->size_line + x * (mlx->img->bpp / 8))) = color;
-//         y++;
-//     }
-// }
-
 int render_next_frame(t_ray *ray)
 {
 	int x;
@@ -77,9 +51,6 @@ int render_next_frame(t_ray *ray)
 		if (ray->draw_end >= SCREEN_HEIGHT)
 			ray->draw_end = SCREEN_HEIGHT - 1;
 
-		
-		//int tex_num = ray->int_map[ray->map_x][ray->map_y] - 1;
-		int i;
 		i = ray->draw_end;
 		while(i <= SCREEN_HEIGHT)
 		{
@@ -102,9 +73,6 @@ int render_next_frame(t_ray *ray)
 		if(ray->side == 0 && ray->ray_dir_x > 0) ray->tex_x = ray->tx->width - ray->tex_x - 1;
 		if(ray->side == 1 && ray->ray_dir_y < 0) ray->tex_x = ray->tx->width - ray->tex_x - 1;
 
-		//double step = 1.0 * TEX_HEIGHT / ray->line_height;
-		//double tex_pos = (ray->draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
-
 		draw_texture(ray, &x);
 		x++;
 	}
@@ -113,7 +81,6 @@ int render_next_frame(t_ray *ray)
 	ray->frame_time = (ray->time - ray->old_time) / 1000.0;
 	if (ray->frame_time > 0)
 		//printf("FPS: %f\n", 1.0 / ray->frame_time);
-
 	mlx_put_image_to_window(ray->mlx, ray->mlx_win, ray->img, 0, 0);
 	ray->move_speed = ray->frame_time * 7.0;
 	ray->rot_speed = ray->frame_time * 4.0;
