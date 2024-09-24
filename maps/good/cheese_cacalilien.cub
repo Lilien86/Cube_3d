@@ -1,7 +1,7 @@
-SO textures/wall_1.xpm
-WE textures/wall_2.xpm
-NO textures/wall_3.xpm
-EA textures/wall_4.xpm
+SO /nfs/homes/lauger/Documents/PROJECT/five_circle/vox2_cube3d/textures/wall_2.xpm
+WE /nfs/homes/lauger/Documents/PROJECT/five_circle/vox2_cube3d/textures/wall_3.xpm
+NO /nfs/homes/lauger/Documents/PROJECT/five_circle/vox2_cube3d/textures/wall_1.xpm
+EA /nfs/homes/lauger/Documents/PROJECT/five_circle/vox2_cube3d/textures/wall_4.xpm
 
 F 164,169,20
 C 153,204,255
