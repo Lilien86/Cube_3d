@@ -1,21 +1,8 @@
 #include "cub3d.h"
 
-void	paths_to_mlx_image(t_ray *ray, t_data *data)
+static void	free_img_mlx_error(t_ray *ray, t_data *data)
 {
-	if (!data)
-		return ;
-	ray->tx = (t_texture *)malloc(sizeof(t_texture));
-	ray->tx_north = (t_texture *)malloc(sizeof(t_texture));
-	ray->tx_south = (t_texture *)malloc(sizeof(t_texture));
-	ray->tx_west = (t_texture *)malloc(sizeof(t_texture));
-	ray->tx_east = (t_texture *)malloc(sizeof(t_texture));
-	ray->tx_north->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_north, &ray->tx_north->width, &ray->tx_north->height);
-	ray->tx_south->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_south, &ray->tx_south->width, &ray->tx_south->height);
-	ray->tx_west->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_west, &ray->tx_west->width, &ray->tx_west->height);
-	ray->tx_east->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_east, &ray->tx_east->width, &ray->tx_east->height);
-	if (ray->tx_north->img == NULL || ray->tx_south->img == NULL || ray->tx_west->img == NULL || ray->tx_east->img == NULL)
-	{
-		printf(RED"Error:\nimage paths is incorrect\n"WHITE);
+	printf(RED"Error:\nimage paths is incorrect\n"WHITE);
 		if (ray->tx_north->img)
 			mlx_destroy_image(ray->mlx, ray->tx_north->img);
 		if (ray->tx_south->img)
@@ -41,6 +28,24 @@ void	paths_to_mlx_image(t_ray *ray, t_data *data)
 		free(data->ray);
 		pars_clean_exit(data);
 		exit(0);
+}
+
+void	paths_to_mlx_image(t_ray *ray, t_data *data)
+{
+	if (!data)
+		return ;
+	ray->tx = (t_texture *)malloc(sizeof(t_texture));
+	ray->tx_north = (t_texture *)malloc(sizeof(t_texture));
+	ray->tx_south = (t_texture *)malloc(sizeof(t_texture));
+	ray->tx_west = (t_texture *)malloc(sizeof(t_texture));
+	ray->tx_east = (t_texture *)malloc(sizeof(t_texture));
+	ray->tx_north->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_north, &ray->tx_north->width, &ray->tx_north->height);
+	ray->tx_south->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_south, &ray->tx_south->width, &ray->tx_south->height);
+	ray->tx_west->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_west, &ray->tx_west->width, &ray->tx_west->height);
+	ray->tx_east->img = mlx_xpm_file_to_image(data->ray->mlx, data->read_file->p_east, &ray->tx_east->width, &ray->tx_east->height);
+	if (ray->tx_north->img == NULL || ray->tx_south->img == NULL || ray->tx_west->img == NULL || ray->tx_east->img == NULL)
+	{
+		free_img_mlx_error(ray, data);
 	}
 	ray->tx_north->addr = mlx_get_data_addr(ray->tx_north->img, &ray->tx_north->bpp, &ray->tx_north->size_line, &ray->tx_north->endian);
 	ray->tx_south->addr = mlx_get_data_addr(ray->tx_south->img, &ray->tx_south->bpp, &ray->tx_south->size_line, &ray->tx_south->endian);
@@ -94,15 +99,16 @@ int	clean_close_windows(void *param)
 
 	data = (t_data *)param;
 	//free_mlx_images(data);
+	free_img_mlx_error(data->ray, data);
 	if (data->ray->img)
 		mlx_destroy_image(data->ray->mlx, data->ray->img);
 	if (data->ray->mlx)
 		mlx_destroy_window(data->ray->mlx, data->ray->mlx_win);
 	if (data->ray->mlx)
 		mlx_destroy_display(data->ray->mlx);
-	ft_free_tab_int(data->ray->int_map, data->map_height);
-	free(data->ray->mlx);
-	free(data->ray);
+	//ft_free_tab_int(data->ray->int_map, data->map_height);
+	//free(data->ray->mlx);
+	//free(data->ray);
 	pars_clean_exit(data);
 	return (0);
 }
