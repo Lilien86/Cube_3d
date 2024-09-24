@@ -15,14 +15,15 @@ static void	init_data(t_data *data)
 	data->map = NULL;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_data *data;
-	t_ray *ray;
+	t_data	*data;
+	t_ray	*ray;
 
 	if (ac != 2)
 	{
-		ft_printf(RED"Error:\nNumber of arguments is incorrect:" WHITE" require format (./cub3d file.cub)\n");
+		ft_printf(RED"Error:\nNumber of arguments is incorrect:"
+			WHITE" require format (./cub3d file.cub)\n");
 		return (1);
 	}
 	data = malloc(sizeof(t_data));

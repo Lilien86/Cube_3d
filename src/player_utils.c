@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void	set_player_pos_NS(t_ray *ray, char direction)
+static void	set_player_pos_ns(t_ray *ray, char direction)
 {
 	if (direction == 'N')
 	{
@@ -18,7 +18,7 @@ static void	set_player_pos_NS(t_ray *ray, char direction)
 	}
 }
 
-static void	set_player_pos_EW(t_ray *ray, char direction)
+static void	set_player_pos_ew(t_ray *ray, char direction)
 {
 	if (direction == 'E')
 	{
@@ -28,7 +28,7 @@ static void	set_player_pos_EW(t_ray *ray, char direction)
 		ray->plane_y = 0;
 	}
 	else if (direction == 'W')
-	{	
+	{
 		ray->dir_x = 0;
 		ray->dir_y = -1 ;
 		ray->plane_x = -0.66;
@@ -40,6 +40,6 @@ void	set_player_position(t_ray *ray, int x, int y, char direction)
 {
 	ray->pos_x = y + 0.5;
 	ray->pos_y = x + 0.5;
-	set_player_pos_NS(ray, direction);
-	set_player_pos_EW(ray, direction);
+	set_player_pos_ns(ray, direction);
+	set_player_pos_ew(ray, direction);
 }

@@ -39,7 +39,8 @@ void	draw_texture(t_ray *ray, int *x)
 			tex_y = ray->tx->height - 1;
 		color = *(int *)(ray->tx->addr + (tex_y * ray->tx->size_line \
 		+ ray->tex_x * (ray->tx->bpp / 8)));
-		*(int *)(ray->addr + (y * ray->size_line + (*x) * (ray->bpp / 8))) = color;
+		*(int *)(ray->addr + (y * ray->size_line
+					+ (*x) * (ray->bpp / 8))) = color;
 		y++;
 	}
 }
@@ -56,13 +57,12 @@ void	assign_dir_tx(t_ray *ray)
 		ray->tx = ray->tx_west;
 }
 
-void assign_calculate_ray(t_ray *ray, int *i)
+void	assign_calculate_ray(t_ray *ray, int *i)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-
 	ray->line_height = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (ray->draw_start < 0)
@@ -70,7 +70,6 @@ void assign_calculate_ray(t_ray *ray, int *i)
 	ray->draw_end = ray->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (ray->draw_end >= SCREEN_HEIGHT)
 		ray->draw_end = SCREEN_HEIGHT - 1;
-
 	*i = ray->draw_end;
 }
 

@@ -26,8 +26,8 @@ int	find_max_lenght(char **map)
 
 int	**allocate_int_map(t_data *data)
 {
-	int **int_map;
-	int i;
+	int	**int_map;
+	int	i;
 
 	data->map_width = find_max_lenght(data->map) + 1;
 	if (!data->map_width)
@@ -52,6 +52,7 @@ int	**allocate_int_map(t_data *data)
 	}
 	return (int_map);
 }
+
 void	fill_map_holes(t_data *data, int **int_map, int *x, int *y)
 {
 	while ((*x) < data->map_width)
@@ -61,6 +62,7 @@ void	fill_map_holes(t_data *data, int **int_map, int *x, int *y)
 	}
 	(*y)++;
 }
+
 void	parse_map(t_ray *ray, t_data *data, int **int_map)
 {
 	int	y;
@@ -86,6 +88,6 @@ void	parse_map(t_ray *ray, t_data *data, int **int_map)
 			}
 			x++;
 		}
-	fill_map_holes(data, int_map, &x, &y);
+		fill_map_holes(data, int_map, &x, &y);
 	}
 }

@@ -9,7 +9,7 @@ SRCS = src/main.c src/parsing/open_file_check_format.c src/parsing/pars_clean_ex
 		src/parsing/check_store_path.c \
 		src/parsing/contains_only_these_caractere.c \
 		src/parsing/grab_file_data_color.c \
-		src/init_graphics.c src/utils_graphics.c \
+		src/init_graphics.c \
 		src/parsing/flood_fill.c \
 		src/key_move.c src/ray_utils.c \
 		src/player_utils.c \
