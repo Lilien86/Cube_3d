@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:01:29 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:02:04 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # define BUFFER_SIZE 1024
 # define MAX_RGB 255
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
+#define SCREEN_WIDTH 896
+#define SCREEN_HEIGHT 512
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"

@@ -16,6 +16,7 @@ void	dda_algo(t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
+		//printf("pos: %d\n", ray->int_map[ray->map_x][ray->map_y]);
 		if (ray->int_map[ray->map_x][ray->map_y] > 0)
 			ray->hit = 1;
 	}
@@ -94,7 +95,7 @@ int	render_next_frame(t_ray *ray)
 	ray->time = get_current_time_millis();
 	ray->frame_time = (ray->time - ray->old_time) / 1000.0;
 	mlx_put_image_to_window(ray->mlx, ray->mlx_win, ray->img, 0, 0);
-	ray->move_speed = ray->frame_time * 5.0;
-	ray->rot_speed = ray->frame_time * 3.0;
+	ray->move_speed = ray->frame_time * 2.0;
+	ray->rot_speed = ray->frame_time * 1.0;
 	return (0);
 }
