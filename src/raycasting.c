@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:10:36 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/09/24 13:01:54 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 14:19:24 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	render_next_frame(t_ray *ray)
 	ray->time = get_current_time_millis();
 	ray->frame_time = (ray->time - ray->old_time) / 1000.0;
 	mlx_put_image_to_window(ray->mlx, ray->mlx_win, ray->img, 0, 0);
-	ray->move_speed = ray->frame_time * 2.0;
-	ray->rot_speed = ray->frame_time * 1.0;
+	ray->move_speed = ray->frame_time * 10.0;
+	ray->rot_speed = ray->frame_time * 3.0;
 	return (0);
 }
