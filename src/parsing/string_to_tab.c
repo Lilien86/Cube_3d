@@ -1,12 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_to_tab.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 13:42:14 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 13:42:21 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// This is tempory function
-void print_2d_array(char **array, int rows) {
-	for (int i = 0; i < rows; i++) {
-		printf("%s\n", array[i]);
-	}
-}
 
 void	string_to_tab(t_read_file *rf)
 {

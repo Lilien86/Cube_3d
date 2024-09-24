@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/23 13:40:53 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 13:41:16 by lauger           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cub3d.h"
 
@@ -47,7 +58,6 @@ int	open_textures_paths(t_data *data, char **c_map)
 	handle_opening_folder(data, c_map, data->read_file->p_south);
 	handle_opening_folder(data, c_map, data->read_file->p_west);
 	handle_opening_folder(data, c_map, data->read_file->p_east);
-
 	handle_opening_file(data, c_map, data->read_file->p_north);
 	handle_opening_file(data, c_map, data->read_file->p_south);
 	handle_opening_file(data, c_map, data->read_file->p_west);
