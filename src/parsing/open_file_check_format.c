@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file_check_format.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:39:04 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:23:53 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 14:16:24 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ bool	has_extension(char *filename, char *extension)
 	return (false);
 }
 
+static int	handle_open(char *file, t_data *data)
+{
+	int	fd;
+
+	fd = open(file, __O_DIRECTORY);
+	if (fd != -1)
+	{
+		printf(RED"Error:\nFailed to open file: is folder\n"
+			WHITE" %s\n", strerror(errno));
+		free(data->c_int_rgb);
+		free(data->f_int_rgb);
+		free(data);
+		close(fd);
+		exit (0);
+	}
+	fd = open(file, O_RDONLY, 0);
+	if (fd == -1)
+	{
+		printf(RED"Error:\nFailed to open file:"
+			WHITE" %s\n", strerror(errno));
+		free(data->c_int_rgb);
+		free(data->f_int_rgb);
+		free(data);
+		exit (0);
+	}
+	return (fd);
+}
+
 int	open_file(char *file, t_data *data)
 {
 	int	fd;
@@ -41,15 +69,6 @@ int	open_file(char *file, t_data *data)
 		free(data);
 		exit(0);
 	}
-	fd = open(file, O_RDONLY, 0);
-	if (fd == -1)
-	{
-		printf(RED"Error:\nFailed to open file:"
-			WHITE" %s\n", strerror(errno));
-		free(data->c_int_rgb);
-		free(data->f_int_rgb);
-		free(data);
-		exit (0);
-	}
+	fd = handle_open(file, data);
 	return (fd);
 }
