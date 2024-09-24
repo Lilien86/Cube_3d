@@ -5,8 +5,8 @@
 # define BUFFER_SIZE 1024
 # define MAX_RGB 255
 
-#define SCREEN_WIDTH 896
-#define SCREEN_HEIGHT 512
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
 
