@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 12:10:36 by ybarbot           #+#    #+#             */
+/*   Updated: 2024/09/24 12:10:40 by ybarbot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	dda_algo(t_ray *ray)
@@ -16,7 +28,6 @@ void	dda_algo(t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		//printf("pos: %d\n", ray->int_map[ray->map_x][ray->map_y]);
 		if (ray->int_map[ray->map_x][ray->map_y] > 0)
 			ray->hit = 1;
 	}

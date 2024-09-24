@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 12:02:04 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/24 12:49:37 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define BUFFER_SIZE 1024
 # define MAX_RGB 255
 
-#define SCREEN_WIDTH 896
-#define SCREEN_HEIGHT 512
+# define SCREEN_WIDTH 896
+# define SCREEN_HEIGHT 512
 
 # define BLACK		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -187,6 +187,10 @@ void		draw_texture(t_ray *ray, int *x);
 void		texture_calculations(t_ray *ray);
 long		get_current_time_millis(void);
 int			**allocate_int_map(t_data *data);
+void		rotate_1(int keycode, t_ray *ray);
+void		move_player(int keycode, t_ray *ray);
+void		move_player_x(int keycode, t_ray *ray);
+void		move_player_y(int keycode, t_ray *ray);
 void		set_player_position(t_ray *ray, int x, int y, char direction);
 void		parse_map(t_ray *ray, t_data *data, int **int_map);
 int			key_hook(int keycode, t_ray *ray);

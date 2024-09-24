@@ -15,6 +15,7 @@ SRCS = src/main.c src/parsing/open_file_check_format.c src/parsing/pars_clean_ex
 		src/player_utils.c \
 		src/ray_calculation.c \
 		src/map_utils.c src/raycasting.c
+
 OBJ_DIR = build
 OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
@@ -37,7 +38,6 @@ $(LIBFT):
 $(MLX):
 	$(MAKE) --quiet -C $(MLX_DIR)
 
-# Ensure all necessary directories exist before compilation
 $(OBJ_DIR)/%.o: src/%.c
 	@mkdir -p $(@D)  # Ensure the directory for the object file exists
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
@@ -53,7 +53,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) --quiet -C $(LIBFT_DIR) fclean
-# $(MAKE) --quiet -C $(MLX_DIR) fclean  # Uncomment if `fclean` is defined for MLX
 
 re: fclean all
 

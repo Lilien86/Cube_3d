@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_store_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:07:51 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/23 13:41:51 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/24 12:47:27 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_path(t_read_file *rf, int num_line, char *id)
 	str = ft_substr(line, 2, ft_strlen(line) - 2);
 	if (str == NULL)
 		return (-1);
-	if (has_extenssion(str, ".xpm") == false && has_extenssion(str, ".png") == false)
+	if (has_extenssion(str, ".xpm") == 0 && has_extenssion(str, ".png") == 0)
 	{
 		free(str);
 		free(line);

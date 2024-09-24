@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 12:46:09 by ybarbot           #+#    #+#             */
+/*   Updated: 2024/09/24 12:46:27 by ybarbot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 long	get_current_time_millis(void)
@@ -10,7 +22,7 @@ long	get_current_time_millis(void)
 
 void	fill_floor_cell(t_ray *ray, int *i, int *x)
 {
-	while((*i) < SCREEN_HEIGHT)
+	while ((*i) < SCREEN_HEIGHT)
 	{
 		ray->addr_c[*i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
 		(*i)++;
