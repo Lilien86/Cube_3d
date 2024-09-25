@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:52:58 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:42:26 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/25 09:26:27 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	free_img_mlx_error(t_ray *ray, t_data *data)
 
 void	paths_to_mlx_image(t_ray *r, t_data *data)
 {
-	if (!data || !r)
-		return ;
 	r->tx = NULL;
 	r->tx_north = (t_texture *)ft_calloc(sizeof(t_texture), 1);
 	r->tx_south = (t_texture *)ft_calloc(sizeof(t_texture), 1);
@@ -115,7 +113,7 @@ int	clean_close_windows(void *param)
 int	setup_mlx(t_ray *ray)
 {
 	ray->mlx = mlx_init();
-	if (ray->mlx == NULL)
+	if (ray->mlx == NULL || ray->data == NULL)
 	{
 		printf("Error:mlx_init() failed\n");
 		return (1);

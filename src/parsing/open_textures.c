@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:40:53 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:26:54 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/25 09:23:02 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	handle_opening_folder(t_data *data, char **c_map, char *path)
 	if (fd != -1)
 	{
 		close(fd);
-		put_str_exit(data, RED "Error:\nImpossible to open file\n" WHITE, c_map);
+		put_str_exit(data, RED "Error:\nImpossible to open file\n"
+			WHITE, c_map);
 	}
 	return (fd);
 }
@@ -43,7 +44,8 @@ static int	handle_opening_file(t_data *data, char **c_map, char *path)
 	fd = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		put_str_exit(data, RED "Error:\nImpossible to open file\n" WHITE, c_map);
+		put_str_exit(data, RED "Error:\nImpossible to open file\n"
+			WHITE, c_map);
 	if (fd != -1)
 		close(fd);
 	return (fd);
