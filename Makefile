@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = src/main.c src/parsing/open_file_check_format.c \
 		src/parsing/pars_clean_exit.c src/parsing/file_to_string.c \
