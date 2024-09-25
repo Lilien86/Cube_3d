@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:49:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:30:00 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/25 10:19:33 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ t_read_file	*read_file_to_string(int fd, t_data *data);
 int			check_path(t_read_file *rf, int num_line, char *id);
 int			contains_only_these_characters(char **map);
 void		string_to_tab(t_read_file *rf);
+void		free_img_mlx_error(t_ray *ray, t_data *data);
 void		grab_data(t_data *data);
 int			check_line(t_read_file *rf, char *id, int num_line,
 				int value_check);
@@ -172,6 +173,7 @@ int			open_textures_paths(t_data *data, char **c_map);
 int			take_colors_value(t_read_file *rf, int p_floor, int p_ceiling);
 char		*deblank(char *input, int state);
 void		init_ray(t_ray *ray, t_data *data, int **int_map);
+void		paths_to_mlx_image_second_part(t_ray *r, t_data *data);
 int			setup_mlx(t_ray *ray);
 int			clean_close_windows(void *param);
 void		paths_to_mlx_image(t_ray *ray, t_data *data);

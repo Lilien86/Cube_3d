@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:21:24 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:39:58 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/25 10:05:41 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ int	take_colors_value(t_read_file *rf, int p_floor, int p_ceiling)
 
 	if (!rf)
 		return (-1);
-	//f_str = ft_substr(rf->tab_content[p_floor], 2,
-	//		ft_strlen(rf->tab_content[p_floor]) - 2);
-	//c_str = ft_substr(rf->tab_content[p_ceiling], 2,
-	//		ft_strlen(rf->tab_content[p_ceiling]) - 2);
-	f_str = deblank(ft_substr(rf->tab_content[p_floor], 1, ft_strlen(rf->tab_content[p_floor]) - 1), 1);
-	c_str = deblank(ft_substr(rf->tab_content[p_ceiling], 1, ft_strlen(rf->tab_content[p_ceiling]) - 1), 1);
+	f_str = deblank(ft_substr(rf->tab_content[p_floor], 1,
+				ft_strlen(rf->tab_content[p_floor]) - 1), 1);
+	c_str = deblank(ft_substr(rf->tab_content[p_ceiling], 1,
+				ft_strlen(rf->tab_content[p_ceiling]) - 1), 1);
 	if (c_str == NULL || f_str == NULL)
 		return (-1);
 	f_tab = ft_split(f_str, ',');
