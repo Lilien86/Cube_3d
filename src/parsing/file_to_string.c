@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 10:50:40 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 12:48:15 by lauger           ###   ########.fr       */
+/*   Created: 2024/09/23 10:41:02 by lauger            #+#    #+#             */
+/*   Updated: 2024/09/23 10:55:01 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ t_read_file	*read_file_to_string(int fd, t_data *data)
 	char		*new_content;
 
 	rf = init_rf(data, fd);
-	while ((rf->bytes_read = read(fd, rf->buffer, sizeof(rf->buffer))) > 0)
+	rf->bytes_read = read(fd, rf->buffer, sizeof(rf->buffer));
+	while (rf->bytes_read > 0)
 	{
 		rf->new_size = rf->total_size + rf->bytes_read;
 		new_content = ft_realloc(rf->str_content, rf->new_size + 1,
@@ -81,6 +82,7 @@ t_read_file	*read_file_to_string(int fd, t_data *data)
 		rf->str_content = new_content;
 		ft_memcpy(rf->str_content + rf->total_size, rf->buffer, rf->bytes_read);
 		rf->total_size += rf->bytes_read;
+		rf->bytes_read = read(fd, rf->buffer, sizeof(rf->buffer));
 	}
 	add_eof_content(rf);
 	rf->data = data;

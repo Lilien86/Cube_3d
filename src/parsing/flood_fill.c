@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:22:10 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/20 12:36:12 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/26 10:38:40 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	replace_space_to_wall(t_data *data)
 
 static int	is_invalid(char **c_map, int x, int y)
 {
+	if (y > (int)ft_strlen(c_map[x]))
+	{
+		return (1);
+	}
 	if (c_map[x] == NULL || c_map[x][y] == '\0')
 	{
 		return (1);
@@ -65,4 +69,28 @@ int	flood_fill(char **c_map, int x, int y)
 	flood_fill(c_map, x, y + 1);
 	flood_fill(c_map, x, y - 1);
 	return (0);
+}
+
+void	manage_utilization_flood_fill(t_data *data, char **c_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (c_map[i] != NULL)
+	{
+		j = 0;
+		while (c_map[i][j] != '\0')
+		{
+			if (flood_fill(c_map, i, j) == -1)
+			{
+				ft_putstr_fd(RED"Error:\nInvalid Map:"
+					WHITE" must be surrounded by walls\n", 2);
+				ft_free_tab(c_map);
+				pars_clean_exit(data);
+			}
+			j++;
+		}
+		i++;
+	}
 }
