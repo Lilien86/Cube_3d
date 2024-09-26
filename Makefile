@@ -22,7 +22,7 @@ SRCS = src/main.c src/parsing/open_file_check_format.c \
 OBJ_DIR = build
 OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
-NAME = ./cub3d
+NAME = ./cub3D
 MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm

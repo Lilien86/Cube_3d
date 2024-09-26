@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:22:10 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/24 13:19:12 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/09/26 10:38:40 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	replace_space_to_wall(t_data *data)
 
 static int	is_invalid(char **c_map, int x, int y)
 {
+	if (y > (int)ft_strlen(c_map[x]))
+	{
+		return (1);
+	}
 	if (c_map[x] == NULL || c_map[x][y] == '\0')
 	{
 		return (1);

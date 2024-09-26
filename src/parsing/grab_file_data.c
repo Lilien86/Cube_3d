@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/25 10:05:26 by lauger           ###   ########.fr       */
+/*   Updated: 2024/09/26 09:31:54 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@ int	check_line(t_read_file *rf, char *id, int num_line, int value_check)
 	return (result);
 }
 
-static int	valid_value(t_data *data, char *id, int i)
+static int	valid_value(t_data *data, char *id, int i, int *nb_paths)
 {
 	if (ft_strstr(data->rf->tab_content[i], id))
 	{
+		*nb_paths += 1;
+		if (*nb_paths > 4)
+		{
+			ft_printf(RED "Error:\nThe File must have 4 paths "
+				 "(NO, SO, WE, EA)\n" WHITE);
+			pars_clean_exit(data);
+		}
 		if (check_line(data->rf, id, i, 2) != 0)
 		{
 			ft_printf(RED "Error:\nFile format is incorrect\n" WHITE);
@@ -48,17 +55,25 @@ static int	valid_value(t_data *data, char *id, int i)
 static void	grab_sprite_paths(t_data *data)
 {
 	int	i;
+	int	nb_paths;
 
 	i = 0;
+	nb_paths = 0;
 	if (data->rf == NULL)
 		pars_clean_exit(data);
 	while (data->rf->tab_content[i])
 	{
-		valid_value(data, "NO", i);
-		valid_value(data, "SO", i);
-		valid_value(data, "WE", i);
-		valid_value(data, "EA", i);
+		valid_value(data, "NO", i, &nb_paths);
+		valid_value(data, "SO", i, &nb_paths);
+		valid_value(data, "WE", i, &nb_paths);
+		valid_value(data, "EA", i, &nb_paths);
 		i++;
+	}
+	if (nb_paths != 4)
+	{
+		ft_printf(RED "Error:\nThe File must have 4 paths "
+			 "(NO, SO, WE, EA)\n" WHITE);
+		pars_clean_exit(data);
 	}
 	return ;
 }
