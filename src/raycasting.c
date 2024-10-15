@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:10:36 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/09/24 14:19:24 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/10/15 11:03:36 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void	draw_texture(t_ray *ray, int *x)
 	int	tex_y;
 	int	d;
 
+	tex_y = 0;
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{
 		d = y * 256 - SCREEN_HEIGHT * 128 + ray->line_height * 128;
-		tex_y = ((d * ray->tx->height) / ray->line_height) / 256;
+		if (ray->line_height != 0)
+			tex_y = ((d * ray->tx->height) / ray->line_height) / 256;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= ray->tx->height)

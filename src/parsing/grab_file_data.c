@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 11:06:18 by lauger            #+#    #+#             */
-/*   Updated: 2024/09/26 09:31:54 by lauger           ###   ########.fr       */
+/*   Updated: 2024/10/15 09:10:19 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	valid_value(t_data *data, char *id, int i, int *nb_paths)
 		if (*nb_paths > 4)
 		{
 			ft_printf(RED "Error:\nThe File must have 4 paths "
-				 "(NO, SO, WE, EA)\n" WHITE);
+				"(NO, SO, WE, EA)\n" WHITE);
 			pars_clean_exit(data);
 		}
 		if (check_line(data->rf, id, i, 2) != 0)
@@ -72,7 +72,7 @@ static void	grab_sprite_paths(t_data *data)
 	if (nb_paths != 4)
 	{
 		ft_printf(RED "Error:\nThe File must have 4 paths "
-			 "(NO, SO, WE, EA)\n" WHITE);
+			"(NO, SO, WE, EA)\n" WHITE);
 		pars_clean_exit(data);
 	}
 	return ;
@@ -87,6 +87,12 @@ void	grab_data(t_data *data)
 	grab_sprite_paths(data);
 	grab_color(data);
 	grab_map(data);
+	if ((long long)(ft_strlen(data->map[0])
+		* ft_tab_len(data->map)) >= (long long)(200 * 200))
+	{
+		ft_printf(RED"Error:\nThe map is too big\n"WHITE);
+		pars_clean_exit(data);
+	}
 	replace_space_to_wall(data);
 	c_map = ft_copy_tab(data->map, ft_tab_len(data->map));
 	if (c_map == NULL)
