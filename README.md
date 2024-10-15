@@ -43,3 +43,8 @@ make
 3. There must be only one starting position.
 4. Rectangular shape: All rows must have the same number of columns.
 5. No gaps: The map cannot have any undefined areas inside.
+
+## Sources
+- Lodev blog (https://lodev.org/cgtutor/raycasting.html)
+- Javidx9 video (https://youtu.be/NbSee-XM7WA?si=Lg1NyZL-PhpnAZ3W)
+- Kofybrek devlog (https://youtu.be/LUYxLjic0Bc?si=3DYxCFdwpMbKbsay)
