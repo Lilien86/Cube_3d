@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:46:09 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:46:27 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/10/15 15:11:46 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@ long	get_current_time_millis(void)
 
 void	fill_floor_cell(t_ray *ray, int *i, int *x)
 {
+	int	*addr_int;
+	int	size_line_int;
+
+	addr_int = (int *)(ray->addr);
+	size_line_int = ray->size_line / 4;
 	while ((*i) < SCREEN_HEIGHT)
 	{
-		ray->addr_c[*i * ray->size_line / 4 + *x] = ray->data->f_hex_rgb;
+		addr_int[(*i) * size_line_int + *x] = ray->data->f_hex_rgb;
 		(*i)++;
 	}
 	*i = ray->draw_start;
 	while (*i >= 0)
 	{
-		ray->addr_c[*i * ray->size_line / 4 + *x] = ray->data->c_hex_rgb;
+		addr_int[(*i) * size_line_int + *x] = ray->data->c_hex_rgb;
 		(*i)--;
 	}
 }

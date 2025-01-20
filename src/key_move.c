@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 12:07:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/09/24 12:49:28 by ybarbot          ###   ########.fr       */
+/*   Created: 2024/10/31 09:37:13 by ybarbot           #+#    #+#             */
+/*   Updated: 2024/10/31 09:37:15 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,45 +53,51 @@ void	rotate_1(int keycode, t_ray *ray)
 
 void	move_player_y(int keycode, t_ray *ray)
 {
+	double	new_pos_x;
+	double	new_pos_y;
+
 	if (keycode == 119)
 	{
-		if (ray->int_map[(int)(ray->pos_x + ray->dir_x
-				* ray->move_speed)][(int)(ray->pos_y)] == 0)
-			ray->pos_x += ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y
-				* ray->move_speed)] == 0)
-			ray->pos_y += ray->dir_y * ray->move_speed;
+		new_pos_x = ray->pos_x + ray->dir_x * ray->move_speed;
+		new_pos_y = ray->pos_y + ray->dir_y * ray->move_speed;
+		if (ray->int_map[(int)new_pos_x][(int)(ray->pos_y)] == 0)
+			ray->pos_x = new_pos_x;
+		if (ray->int_map[(int)(ray->pos_x)][(int)new_pos_y] == 0)
+			ray->pos_y = new_pos_y;
 	}
 	if (keycode == 115)
 	{
-		if (ray->int_map[(int)(ray->pos_x - ray->dir_x
-				* ray->move_speed)][(int)(ray->pos_y)] == 0)
-			ray->pos_x -= ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
-				- ray->dir_y * ray->move_speed)] == 0)
-			ray->pos_y -= ray->dir_y * ray->move_speed;
+		new_pos_x = ray->pos_x - ray->dir_x * ray->move_speed;
+		new_pos_y = ray->pos_y - ray->dir_y * ray->move_speed;
+		if (ray->int_map[(int)new_pos_x][(int)(ray->pos_y)] == 0)
+			ray->pos_x = new_pos_x;
+		if (ray->int_map[(int)(ray->pos_x)][(int)new_pos_y] == 0)
+			ray->pos_y = new_pos_y;
 	}
 }
 
 void	move_player_x(int keycode, t_ray *ray)
 {
+	double	new_pos_x;
+	double	new_pos_y;
+
 	if (keycode == 100)
 	{
-		if (ray->int_map[(int)(ray->pos_x
-				- ray->dir_x * ray->move_speed)][(int)(ray->pos_y)] == 0)
-			ray->pos_y -= ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
-				- ray->dir_y * ray->move_speed)] == 0)
-			ray->pos_x += ray->dir_y * ray->move_speed;
+		new_pos_x = ray->pos_x + ray->dir_y * ray->move_speed;
+		new_pos_y = ray->pos_y - ray->dir_x * ray->move_speed;
+		if (ray->int_map[(int)new_pos_x][(int)(ray->pos_y)] == 0)
+			ray->pos_x = new_pos_x;
+		if (ray->int_map[(int)(ray->pos_x)][(int)new_pos_y] == 0)
+			ray->pos_y = new_pos_y;
 	}
 	if (keycode == 97)
 	{
-		if (ray->int_map[(int)(ray->pos_x + ray->dir_x
-				* ray->move_speed)][(int)(ray->pos_y)] == 0)
-			ray->pos_y += ray->dir_x * ray->move_speed;
-		if (ray->int_map[(int)(ray->pos_x)][(int)(ray->pos_y
-				+ ray->dir_y * ray->move_speed)] == 0)
-			ray->pos_x -= ray->dir_y * ray->move_speed;
+		new_pos_x = ray->pos_x - ray->dir_y * ray->move_speed;
+		new_pos_y = ray->pos_y + ray->dir_x * ray->move_speed;
+		if (ray->int_map[(int)new_pos_x][(int)(ray->pos_y)] == 0)
+			ray->pos_x = new_pos_x;
+		if (ray->int_map[(int)(ray->pos_x)][(int)new_pos_y] == 0)
+			ray->pos_y = new_pos_y;
 	}
 }
 
